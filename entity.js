@@ -49,6 +49,21 @@ var Splat = (function(splat, window, document) {
 		context.strokeStyle = "#ff0000";
 		context.strokeRect(this.x, this.y, this.width, this.height);
 	};
+	Entity.prototype.resolveCollisionWith = function(other) {
+		var tolerance = 0.01;
+		if (this.didOverlapHoriz(other) && this.wasAbove(other)) {
+			this.y = other.y - this.height - tolerance;
+		}
+		if (this.didOverlapHoriz(other) && this.wasBelow(other)) {
+			this.y = other.y + other.height + tolerance;
+		}
+		if (this.didOverlapVert(other) && this.wasLeft(other)) {
+			this.x = other.x - this.width - tolerance;
+		}
+		if (this.didOverlapVert(other) && this.wasRight(other)) {
+			this.x = other.x + other.width + tolerance;
+		}
+	}
 
 	function AnimatedEntity(x, y, width, height, sprite, spriteOffsetX, spriteOffsetY) {
 		this.sprite = sprite;
