@@ -35,6 +35,20 @@ var Splat = (function(splat, window, document) {
 	Entity.prototype.wasAbove = function(other) {
 		return this.lastY + this.height <= other.lastY;
 	};
+	Entity.prototype.wasBelow = function(other) {
+		return this.lastY >= other.lastY + other.height;
+	};
+	Entity.prototype.wasLeft = function(other) {
+		return this.lastX + this.width <= other.lastX;
+	};
+	Entity.prototype.wasRight = function(other) {
+		return this.lastX >= other.lastX + other.width;
+	};
+	Entity.prototype.draw = function(context) {
+		// draw bounding boxes
+		context.strokeStyle = "#ff0000";
+		context.strokeRect(this.x, this.y, this.width, this.height);
+	};
 
 	function AnimatedEntity(x, y, width, height, sprite, spriteOffsetX, spriteOffsetY) {
 		this.sprite = sprite;
@@ -56,8 +70,8 @@ var Splat = (function(splat, window, document) {
 			context.drawImage(this.sprite, this.x + this.spriteOffsetX, this.y + this.spriteOffsetY);
 		}
 		// draw bounding boxes
-		// context.strokeStyle = "#ff0000";
-		// context.strokeRect(this.x, this.y, this.width, this.height);
+		context.strokeStyle = "#ff0000";
+		context.strokeRect(this.x, this.y, this.width, this.height);
 	};
 	AnimatedEntity.prototype.copy = function() {
 		return new AnimatedEntity(this.x, this.y, this.width, this.height, this.sprite, this.spriteOffsetX, this.spriteOffsetY);
