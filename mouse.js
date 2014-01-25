@@ -6,8 +6,12 @@ var Splat = (function(splat, window, document) {
 			var y = event.pageY - canvas.offsetTop + document.body.scrollTop;
 
 			// scale based on ratio of canvas internal dimentions to css dimensions
-			x *= canvas.width / canvas.style.width.substring(0, canvas.style.width.indexOf("p"));
-			y *= canvas.height / canvas.style.height.substring(0, canvas.style.height.indexOf("p"));
+			if (canvas.style.width.length) {
+				x *= canvas.width / canvas.style.width.substring(0, canvas.style.width.indexOf("p"));
+			}
+			if (canvas.style.height.length) {
+				y *= canvas.height / canvas.style.height.substring(0, canvas.style.height.indexOf("p"));
+			}
 
 			return {x:x, y:y};
 		};
