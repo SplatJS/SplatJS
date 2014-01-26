@@ -44,6 +44,14 @@ var Splat = (function(splat, window, document) {
 	Entity.prototype.wasRight = function(other) {
 		return this.lastX >= other.lastX + other.width;
 	};
+	Entity.prototype.moved = function() {
+		var x = this.x|0;
+		var lastX = this.lastX|0;
+		var y = this.y|0;
+		var lastY = this.lastY|0;
+		return (x != lastX) || (y != lastY);
+	}
+
 	Entity.prototype.draw = function(context) {
 		// draw bounding boxes
 		context.strokeStyle = "#ff0000";
