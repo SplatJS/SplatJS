@@ -17,7 +17,7 @@ var Splat = (function(splat, window, document) {
 		var timers = {};
 
 		this.camera = new Splat.Camera(0, 0, canvas.width, canvas.height);
-		this.showFrameRate = true;
+		this.showFrameRate = false;
 
 		function drawFrameRate(elapsedMillis) {
 			var fps = (1000 / elapsedMillis) |0;

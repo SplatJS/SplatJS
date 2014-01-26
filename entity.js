@@ -58,8 +58,8 @@ var Splat = (function(splat, window, document) {
 
 	Entity.prototype.draw = function(context) {
 		// draw bounding boxes
-		context.strokeStyle = "#ff0000";
-		context.strokeRect(this.x, this.y, this.width, this.height);
+		// context.strokeStyle = "#ff0000";
+		// context.strokeRect(this.x, this.y, this.width, this.height);
 	};
 	Entity.prototype.resolveCollisionWith = function(other) {
 		var tolerance = 0.01;
@@ -97,8 +97,8 @@ var Splat = (function(splat, window, document) {
 			context.drawImage(this.sprite, this.x + this.spriteOffsetX, this.y + this.spriteOffsetY);
 		}
 		// draw bounding boxes
-		context.strokeStyle = "#ff0000";
-		context.strokeRect(this.x, this.y, this.width, this.height);
+		// context.strokeStyle = "#ff0000";
+		// context.strokeRect(this.x, this.y, this.width, this.height);
 	};
 	AnimatedEntity.prototype.copy = function() {
 		return new AnimatedEntity(this.x, this.y, this.width, this.height, this.sprite, this.spriteOffsetX, this.spriteOffsetY);
