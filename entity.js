@@ -9,12 +9,16 @@ var Splat = (function(splat, window, document) {
 		this.vy = 0;
 		this.lastX = x;
 		this.lastY = y;
+		this.frictionX = 1;
+		this.frictionY = 1;
 	}
 	Entity.prototype.move = function(elapsedMillis) {
 		this.lastX = this.x;
 		this.lastY = this.y;
 		this.x += elapsedMillis * this.vx;
 		this.y += elapsedMillis * this.vy;
+		this.vx *= this.frictionX;
+		this.vy *= this.frictionY;
 	};
 	Entity.prototype.overlapsHoriz = function(other) {
 		return this.x + this.width > other.x && this.x < other.x + other.width;
