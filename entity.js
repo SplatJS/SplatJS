@@ -35,6 +35,9 @@ var Splat = (function(splat, window, document) {
 	Entity.prototype.wasAbove = function(other) {
 		return this.lastY + this.height <= other.lastY;
 	};
+	Entity.prototype.addGravity = function(amount, elapsedMillis){
+		this.vy+= amount * elapsedMillis;
+	};
 
 	function AnimatedEntity(x, y, width, height, sprite, spriteOffsetX, spriteOffsetY) {
 		this.sprite = sprite;
@@ -61,6 +64,9 @@ var Splat = (function(splat, window, document) {
 	};
 	AnimatedEntity.prototype.copy = function() {
 		return new AnimatedEntity(this.x, this.y, this.width, this.height, this.sprite, this.spriteOffsetX, this.spriteOffsetY);
+	};
+	AnimatedEntity.prototype.addGravity = function(amount, elapsedMillis){
+		this.vy+= amount * elapsedMillis;
 	};
 
 	splat.Entity = Entity;
