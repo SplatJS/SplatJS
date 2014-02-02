@@ -70,17 +70,21 @@ var Splat = (function(splat, window, document) {
 		loadImagesFromManifest(imageLoader, manifest);
 	}
 	function makeAnimationFromManifest(images, key, manifestEntry) {
+		var animation;
 		if (manifestEntry.strip !== undefined) {
 			var img = images.get(key);
-			return makeAnimation(img, manifestEntry.frames, manifestEntry.msPerFrame);
+			animation = makeAnimation(img, manifestEntry.frames, manifestEntry.msPerFrame);
 		} else if (manifestEntry.prefix !== undefined) {
-			var a = new Animation();
+			animation = new Animation();
 			for (var i = 1; i <= manifestEntry.frames; i++) {
 				var img = images.get(key + i);
-				a.add(img, manifestEntry.msPerFrame);
+				animation.add(img, manifestEntry.msPerFrame);
 			}
-			return a;
 		}
+		if (manifestEntry.repeatAt !== undefined) {
+			animation.repeatAt = manifestEntry.repeatAt;
+		}
+		return animation;
 	}
 	function generateAnimationsFromManifest(images, manifest) {
 		var animations = {};
