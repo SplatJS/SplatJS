@@ -57,7 +57,13 @@ var Splat = (function(splat, window, document) {
 					imageLoader.load(key, info.strip);
 				} else if (info.prefix !== undefined) {
 					for (var i = 1; i <= info.frames; i++) {
-						var name = info.prefix + i + info.suffix;
+						var number = "" + i;
+						if (info.padNumberTo > 1) {
+							while (number.length < info.padNumberTo) {
+								number = "0" + number;
+							}
+						}
+						var name = info.prefix + number + info.suffix;
 						imageLoader.load(key + i, name);
 					}
 				}
@@ -107,7 +113,11 @@ var Splat = (function(splat, window, document) {
 		return loaded;
 	};
 	AnimationLoader.prototype.get = function(name) {
-		return this.animations[name];
+		var anim = this.animations[name];
+		if (anim === undefined) {
+			console.log("Unknown animation: " +  name);
+		}
+		return anim;
 	};
 
 	splat.Animation = Animation;
