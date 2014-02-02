@@ -6,6 +6,9 @@ var Splat = (function(splat, window, document) {
 	SceneManager.prototype.add = function(name, scene) {
 		this.scenes[name] = scene;
 	};
+	SceneManager.prototype.get = function(name) {
+		return this.scenes[name];
+	};
 	SceneManager.prototype.switchTo = function(name) {
 		if (this.currentScene === this.scenes[name]) {
 			this.currentScene.reset();
