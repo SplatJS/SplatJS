@@ -49,20 +49,34 @@ var Splat = (function(splat, window, document) {
 		return a;
 	}
 
+	function loadImagesFromManifest(imageLoader, manifest) {
+		for (var key in manifest) {
+			if (manifest.hasOwnProperty(key)) {
+				var info = manifest[key];
+				if (info.strip !== undefined) {
+					imageLoader.load(key, info.strip);
+				} else if (info.prefix !== undefined) {
+					for (var i = 1; i <= info.frames; i++) {
+						var name = info.prefix + i + info.suffix;
+						imageLoader.load(key + i, name);
+					}
+				}
+			}
+		}
+	}
 	function AnimationLoader(imageLoader, manifest) {
 		this.imageLoader = imageLoader;
 		this.manifest = manifest;
-		this.totalAnimations = 0;
-		this.loadedAnimation = 0;
+		loadImagesFromManifest(imageLoader, manifest);
 	}
-	function makeAnimationFromManifest(images, manifestEntry) {
+	function makeAnimationFromManifest(images, key, manifestEntry) {
 		if (manifestEntry.strip !== undefined) {
-			var img = images.get(manifestEntry.strip);
+			var img = images.get(key);
 			return makeAnimation(img, manifestEntry.frames, manifestEntry.msPerFrame);
 		} else if (manifestEntry.prefix !== undefined) {
 			var a = new Animation();
 			for (var i = 1; i <= manifestEntry.frames; i++) {
-				var img = images.get(manifestEntry.prefix + i);
+				var img = images.get(key + i);
 				a.add(img, manifestEntry.msPerFrame);
 			}
 			return a;
@@ -73,7 +87,7 @@ var Splat = (function(splat, window, document) {
 		for (var key in manifest) {
 			if (manifest.hasOwnProperty(key)) {
 				var info = manifest[key];
-				animations[key] = makeAnimationFromManifest(images, info);
+				animations[key] = makeAnimationFromManifest(images, key, info);
 			}
 		}
 		return animations;
