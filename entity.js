@@ -54,7 +54,7 @@ var Splat = (function(splat, window, document) {
 		var y = this.y|0;
 		var lastY = this.lastY|0;
 		return (x != lastX) || (y != lastY);
-	}
+	};
 
 	Entity.prototype.draw = function(context) {
 		// draw bounding boxes
@@ -75,7 +75,7 @@ var Splat = (function(splat, window, document) {
 		if (this.didOverlapVert(other) && this.wasRight(other)) {
 			this.x = other.x + other.width + tolerance;
 		}
-	}
+	};
 
 	function AnimatedEntity(x, y, width, height, sprite, spriteOffsetX, spriteOffsetY) {
 		this.sprite = sprite;

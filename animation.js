@@ -72,13 +72,13 @@ var Splat = (function(splat, window, document) {
 	function makeAnimationFromManifest(images, key, manifestEntry) {
 		var animation;
 		if (manifestEntry.strip !== undefined) {
-			var img = images.get(key);
-			animation = makeAnimation(img, manifestEntry.frames, manifestEntry.msPerFrame);
+			var strip = images.get(key);
+			animation = makeAnimation(strip, manifestEntry.frames, manifestEntry.msPerFrame);
 		} else if (manifestEntry.prefix !== undefined) {
 			animation = new Animation();
 			for (var i = 1; i <= manifestEntry.frames; i++) {
-				var img = images.get(key + i);
-				animation.add(img, manifestEntry.msPerFrame);
+				var frame = images.get(key + i);
+				animation.add(frame, manifestEntry.msPerFrame);
 			}
 		}
 		if (manifestEntry.repeatAt !== undefined) {
@@ -108,7 +108,7 @@ var Splat = (function(splat, window, document) {
 	};
 	AnimationLoader.prototype.get = function(name) {
 		return this.animations[name];
-	}
+	};
 
 	splat.Animation = Animation;
 	splat.AnimationLoader = AnimationLoader;

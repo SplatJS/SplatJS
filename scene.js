@@ -83,7 +83,7 @@ var Splat = (function(splat, window, document) {
 
 		this.reset = function() {
 			initFunc.call(that);
-		}
+		};
 
 		this.startTimer = function(name) {
 			timers[name] = 0;
@@ -96,7 +96,7 @@ var Splat = (function(splat, window, document) {
 		};
 		this.timer = function(name) {
 			return timers[name];
-		}
+		};
 	}
 
 	splat.time = time;

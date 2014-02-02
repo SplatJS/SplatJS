@@ -88,7 +88,7 @@ var Splat = (function(splat, window, document) {
 			this.sounds.loadedSounds +
 			this.fonts.loadedFonts;
 		return loadedAssets / totalAssets;
-	}
+	};
 
 	splat.Game = Game;
 	return splat;
