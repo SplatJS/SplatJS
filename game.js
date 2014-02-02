@@ -21,9 +21,14 @@ var Splat = (function(splat, window, document) {
 		this.fonts = new splat.FontLoader();
 		this.fonts.load(manifest.fonts);
 
+		this.animations = new splat.AnimationLoader(this.images, manifest.animations);
+
 		var that = this;
 		this.isLoaded = function() {
-			return this.images.allLoaded() && this.sounds.allLoaded() && this.fonts.allLoaded();
+			return this.images.allLoaded() &&
+				this.sounds.allLoaded() &&
+				this.fonts.allLoaded() &&
+				this.animations.allLoaded();
 		};
 	}
 

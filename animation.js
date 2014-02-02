@@ -49,8 +49,52 @@ var Splat = (function(splat, window, document) {
 		return a;
 	}
 
+	function AnimationLoader(imageLoader, manifest) {
+		this.imageLoader = imageLoader;
+		this.manifest = manifest;
+		this.totalAnimations = 0;
+		this.loadedAnimation = 0;
+	}
+	function makeAnimationFromManifest(images, manifestEntry) {
+		if (manifestEntry.strip !== undefined) {
+			var img = images.get(manifestEntry.strip);
+			return makeAnimation(img, manifestEntry.frames, manifestEntry.msPerFrame);
+		} else if (manifestEntry.prefix !== undefined) {
+			var a = new Animation();
+			for (var i = 1; i <= manifestEntry.frames; i++) {
+				var img = images.get(manifestEntry.prefix + i);
+				a.add(img, manifestEntry.msPerFrame);
+			}
+			return a;
+		}
+	}
+	function generateAnimationsFromManifest(images, manifest) {
+		var animations = {};
+		for (var key in manifest) {
+			if (manifest.hasOwnProperty(key)) {
+				var info = manifest[key];
+				animations[key] = makeAnimationFromManifest(images, info);
+			}
+		}
+		return animations;
+	}
+	AnimationLoader.prototype.allLoaded = function() {
+		if (this.animations !== undefined) {
+			return true;
+		}
+		var loaded = this.imageLoader.allLoaded();
+		if (loaded) {
+			this.animations = generateAnimationsFromManifest(this.imageLoader, this.manifest);
+		}
+		return loaded;
+	};
+	AnimationLoader.prototype.get = function(name) {
+		return this.animations[name];
+	}
+
 	splat.Animation = Animation;
 	splat.makeAnimation = makeAnimation;
+	splat.AnimationLoader = AnimationLoader;
 	return splat;
 
 }(Splat || {}, window, document));
