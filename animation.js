@@ -33,6 +33,16 @@ var Splat = (function(splat, window, document) {
 		this.frame = 0;
 		this.elapsedMillis = 0;
 	};
+	Animation.prototype.flipHorizontally = function() {
+		for (var i = 0; i < this.frames.length; i++) {
+			this.frames[i].img = splat.flipBufferHorizontally(this.frames[i].img);
+		}
+	};
+	Animation.prototype.flipVertically = function() {
+		for (var i = 0; i < this.frames.length; i++) {
+			this.frames[i].img = splat.flipBufferVertically(this.frames[i].img);
+		}
+	};
 
 	function makeFrame(img, frameWidth, f) {
 		return splat.makeBuffer(frameWidth, img.height, function(ctx) {
@@ -89,6 +99,12 @@ var Splat = (function(splat, window, document) {
 		}
 		if (manifestEntry.repeatAt !== undefined) {
 			animation.repeatAt = manifestEntry.repeatAt;
+		}
+		if (manifestEntry.flip === "horizontal") {
+			animation.flipHorizontally();
+		}
+		if (manifestEntry.flip === "vertical") {
+			animation.flipVertically();
 		}
 		return animation;
 	}

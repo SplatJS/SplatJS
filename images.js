@@ -4,8 +4,15 @@ var Splat = (function(splat, window) {
 		this.images = {};
 		this.totalImages = 0;
 		this.loadedImages = 0;
+		this.names = [];
 	}
 	ImageLoader.prototype.load = function(name, path) {
+		// only load an image once
+		if (this.names.indexOf(name) > -1) {
+			return;
+		}
+		this.names.push(name);
+
 		this.totalImages++;
 
 		var img = new Image();

@@ -14,7 +14,22 @@ var Splat = (function(splat, window, document) {
 		return canvas;
 	}
 
+	function flipBufferHorizontally(buffer) {
+		return makeBuffer(buffer.width, buffer.height, function(context) {
+			context.scale(-1, 1);
+			context.drawImage(buffer, -buffer.width, 0);
+		});
+	}
+
+	function flipBufferVertically(buffer) {
+		return makeBuffer(buffer.width, buffer.height, function(context) {
+			context.scale(1, -1);
+			context.drawImage(buffer, 0, -buffer.height);
+		});
+	}
 	splat.makeBuffer = makeBuffer;
+	splat.flipBufferHorizontally = flipBufferHorizontally;
+	splat.flipBufferVertically = flipBufferVertically;
 	return splat;
 
 }(Splat || {}, window, document));
