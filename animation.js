@@ -111,7 +111,6 @@ var Splat = (function(splat, window, document) {
 	}
 
 	splat.Animation = Animation;
-	splat.makeAnimation = makeAnimation;
 	splat.AnimationLoader = AnimationLoader;
 	return splat;
 

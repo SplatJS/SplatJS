@@ -23,14 +23,14 @@ var Splat = (function(splat, window, document) {
 
 		this.animations = new splat.AnimationLoader(this.images, manifest.animations);
 
-		var that = this;
-		this.isLoaded = function() {
-			return this.images.allLoaded() &&
-				this.sounds.allLoaded() &&
-				this.fonts.allLoaded() &&
-				this.animations.allLoaded();
-		};
+		this.scenes = new splat.SceneManager();
 	}
+	Game.prototype.isLoaded = function() {
+		return this.images.allLoaded() &&
+			this.sounds.allLoaded() &&
+			this.fonts.allLoaded() &&
+			this.animations.allLoaded();
+	};
 
 	splat.Game = Game;
 	return splat;
