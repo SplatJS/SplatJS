@@ -78,7 +78,16 @@ var Splat = (function(splat, window) {
 		source.start(0);
 	};
 
-	splat.SoundLoader = SoundLoader;
+	if (window.Audiocontext) {
+		splat.SoundLoader = SoundLoader;
+	} else {
+		console.log("This browser doesn't support the Web Audio API");
+		splat.SoundLoader = function() { };
+		splat.SoundLoader.prototype.load = function() { };
+		splat.SoundLoader.prototype.allLoaded = function() { return true; };
+		splat.SoundLoader.prototype.play = function() { };
+	}
+
 	return splat;
 
 }(Splat || {}, window));
