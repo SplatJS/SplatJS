@@ -8,8 +8,8 @@ var Splat = (function(splat, window) {
 		this.totalFonts += fontFamilies.length;
 
 		var that = this;
-		WebFont.load({ 
-			fontactive: function(familyName, fvd) { 
+		WebFont.load({
+			fontactive: function(familyName, fvd) {
 				that.loadedFonts++;
 			},
 			custom: {
