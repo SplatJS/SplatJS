@@ -34,7 +34,27 @@ var Splat = (function(splat, window, document) {
 		});
 	}
 
+	function setCanvasSize() {
+		var ow = 1136;
+		var oh = 640;
+
+		var w = Math.min(window.innerWidth, ow);
+		var h = Math.min(window.innerHeight, oh);
+		canvas.style.width = w + "px";
+		canvas.style.height = h + "px";
+
+		if (w != ow || h != oh) {
+			canvas.width = oh / window.innerHeight * window.innerWidth;
+			canvas.height = oh;
+		}
+
+		// console.log(window.innerWidth + "x" + window.innerHeight + " - " + canvas.style.width + "x" + canvas.style.height + " - " + canvas.width + "x" + canvas.height);
+	}
+
 	function Game(canvas, manifest) {
+		window.addEventListener("resize", setCanvasSize);
+		setCanvasSize();
+
 		this.mouse = new splat.MouseInput(canvas);
 		this.keyboard = new splat.KeyboardInput(splat.keyMap.US);
 
