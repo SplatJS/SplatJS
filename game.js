@@ -35,20 +35,30 @@ var Splat = (function(splat, window, document) {
 	}
 
 	function setCanvasSize() {
-		var ow = 1136;
-		var oh = 640;
+		var ww = window.innerWidth;
+		var wh = window.innerHeight;
+		var cw = canvas.width;
+		var ch = canvas.height;
 
-		var w = Math.min(window.innerWidth, ow);
-		var h = Math.min(window.innerHeight, oh);
-		canvas.style.width = w + "px";
-		canvas.style.height = h + "px";
-
-		if (w != ow || h != oh) {
-			canvas.width = oh / window.innerHeight * window.innerWidth;
-			canvas.height = oh;
+		if (ww >= cw && wh >= ch) {
+			return;
+		} else if (ww < cw && wh >= ch) {
+			wh = ((ww / cw) * ch) | 0;
+			canvas.style.width = ww + "px";
+			canvas.style.height = wh + "px";
+		} else if (ww >= cw && wh < ch) {
+			ww = ((wh / ch) * cw) | 0;
+			canvas.style.width = ww + "px";
+			canvas.style.height = wh + "px";
+		} else if (ww < cw && wh < ch) {
+			if ((ww / cw) * ch > wh) {
+				ww = ((wh / ch) * cw) | 0;
+			} else {
+				wh = ((ww / cw) * ch) | 0;
+			}
+			canvas.style.width = ww + "px";
+			canvas.style.height = wh + "px";
 		}
-
-		// console.log(window.innerWidth + "x" + window.innerHeight + " - " + canvas.style.width + "x" + canvas.style.height + " - " + canvas.width + "x" + canvas.height);
 	}
 
 	function Game(canvas, manifest) {
