@@ -42,12 +42,22 @@ var Splat = (function(splat, window) {
 		var request = new XMLHttpRequest();
 		request.open("GET", path, true);
 		request.responseType = "arraybuffer";
-		request.onload = function() {
+		request.addEventListener("readystatechange", function() {
+			if (request.readyState != 4) {
+				return;
+			}
+			if (request.status !== 200 && request.status !== 0) {
+				console.log("Error loading sound " + path);
+				return;
+			}
 			that.context.decodeAudioData(request.response, function(buffer) {
 				that.sounds[name] = buffer;
 				that.loadedSounds++;
 			});
-		};
+		});
+		request.addEventListener("error", function() {
+			console.log("Error loading sound " + path);
+		});
 		request.send();
 	};
 	SoundLoader.prototype.allLoaded = function() {
