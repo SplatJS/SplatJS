@@ -8,6 +8,32 @@ var Splat = (function(splat, window, document) {
 		}
 	}
 
+	function makeLoadingScene(game, canvas, nextScene) {
+		return new splat.Scene(canvas, function() {
+		}, function(elapsedMillis) {
+			if (game.isLoaded()) {
+				game.scenes.switchTo(nextScene);
+			}
+		}, function(context) {
+			context.fillStyle = "#000000";
+			context.fillRect(0, 0, canvas.width, canvas.height);
+
+			var quarterWidth = (canvas.width / 4) |0;
+			var halfWidth = (canvas.width / 2) |0;
+			var halfHeight = (canvas.height / 2) |0;
+
+			context.fillStyle = "#ffffff";
+			context.fillRect(quarterWidth, halfHeight - 15, halfWidth, 30);
+
+			context.fillStyle = "#000000";
+			context.fillRect(quarterWidth + 3, halfHeight - 12, halfWidth - 6, 24);
+
+			context.fillStyle = "#ffffff";
+			var barWidth = (halfWidth - 6) * game.percentLoaded();
+			context.fillRect(quarterWidth + 3, halfHeight - 12, barWidth, 24);
+		});
+	}
+
 	function Game(canvas, manifest) {
 		this.mouse = new splat.MouseInput(canvas);
 		this.keyboard = new splat.KeyboardInput(splat.keyMap.US);
@@ -24,6 +50,7 @@ var Splat = (function(splat, window, document) {
 		this.animations = new splat.AnimationLoader(this.images, manifest.animations);
 
 		this.scenes = new splat.SceneManager();
+		this.scenes.add("loading", makeLoadingScene(this, canvas, "title"));
 	}
 	Game.prototype.isLoaded = function() {
 		return this.images.allLoaded() &&
@@ -31,6 +58,17 @@ var Splat = (function(splat, window, document) {
 			this.fonts.allLoaded() &&
 			this.animations.allLoaded();
 	};
+	Game.prototype.percentLoaded = function() {
+		var totalAssets =
+			this.images.totalImages +
+			this.sounds.totalSounds +
+			this.fonts.totalFonts;
+		var loadedAssets =
+			this.images.loadedImages +
+			this.sounds.loadedSounds +
+			this.fonts.loadedFonts;
+		return loadedAssets / totalAssets;
+	}
 
 	splat.Game = Game;
 	return splat;
