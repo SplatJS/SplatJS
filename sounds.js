@@ -1,12 +1,13 @@
 var Splat = (function(splat, window) {
 
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 	function SoundLoader() {
 		this.sounds = {};
 		this.totalSounds = 0;
 		this.loadedSounds = 0;
 		this.muted = false;
 
-		window.AudioContext = window.AudioContext || window.webkitAudioContext;
 		this.context = new AudioContext();
 	}
 	SoundLoader.prototype.load = function(name, path) {
@@ -78,7 +79,7 @@ var Splat = (function(splat, window) {
 		source.start(0);
 	};
 
-	if (window.Audiocontext) {
+	if (window.AudioContext) {
 		splat.SoundLoader = SoundLoader;
 	} else {
 		console.log("This browser doesn't support the Web Audio API");
