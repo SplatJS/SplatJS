@@ -48,7 +48,7 @@ var Splat = (function(splat, window) {
 				return;
 			}
 			if (request.status !== 200 && request.status !== 0) {
-				console.log("Error loading sound " + path);
+				console.error("Error loading sound " + path);
 				return;
 			}
 			that.context.decodeAudioData(request.response, function(buffer) {
@@ -57,7 +57,7 @@ var Splat = (function(splat, window) {
 			});
 		});
 		request.addEventListener("error", function() {
-			console.log("Error loading sound " + path);
+			console.error("Error loading sound " + path);
 		});
 		request.send();
 	};
@@ -73,8 +73,12 @@ var Splat = (function(splat, window) {
 		if (this.muted) {
 			return;
 		}
+		var snd = this.sounds[name];
+		if (snd === undefined) {
+			console.error("Unknown sound: " + name);
+		}
 		var source = this.context.createBufferSource();
-		source.buffer = this.sounds[name];
+		source.buffer = snd;
 		source.connect(this.context.destination);
 		source.start(0);
 	};

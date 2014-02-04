@@ -22,7 +22,7 @@ var Splat = (function(splat, window) {
 			that.images[name] = img;
 		});
 		img.addEventListener("error", function() {
-			console.log("Error loading image " + path);
+			console.error("Error loading image " + path);
 		});
 		img.src = path;
 	};
@@ -30,7 +30,11 @@ var Splat = (function(splat, window) {
 		return this.totalImages == this.loadedImages;
 	};
 	ImageLoader.prototype.get = function(name) {
-		return this.images[name];
+		var img = this.images[name];
+		if (img === undefined) {
+			console.error("Unknown image: " + name);
+		}
+		return img;
 	};
 
 	splat.ImageLoader = ImageLoader;

@@ -131,7 +131,7 @@ var Splat = (function(splat, window, document) {
 	AnimationLoader.prototype.get = function(name) {
 		var anim = this.animations[name];
 		if (anim === undefined) {
-			console.log("Unknown animation: " +  name);
+			console.error("Unknown animation: " + name);
 		}
 		return anim;
 	};
