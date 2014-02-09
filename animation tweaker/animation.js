@@ -11,7 +11,6 @@ var animation;
 var loadCount = 0;
 
 animationTweaker.scenes.add("title", new Splat.Scene(canvas, function() {
-	console.log("init");
 	var a = animationTweaker.animations.get("animation" + loadCount);
 	var x = (canvas.width / 2) - (a.width / 2) |0;
 	var y = (canvas.height / 2) - (a.height / 2) |0;
@@ -19,6 +18,12 @@ animationTweaker.scenes.add("title", new Splat.Scene(canvas, function() {
 
 	controls = findControls();
 	bindControls(animation);
+
+	controls.width.value = animation.width;
+	controls.height.value = animation.height;
+	controls.offsetX.value = animation.spriteOffsetX;
+	controls.offsetY.value = animation.spriteOffsetY;
+	controls.running.checked = running;
 },
 function(elapsedMillis) {
 	if (!running) {
@@ -50,11 +55,6 @@ function(elapsedMillis) {
 var running = true;
 
 function setControls(entity) {
-	controls.width.value = entity.width;
-	controls.height.value = entity.height;
-	controls.offsetX.value = entity.spriteOffsetX;
-	controls.offsetY.value = entity.spriteOffsetY;
-	controls.running.checked = running;
 	controls.frameCounter.textContent = "Frame " + (animation.sprite.frame + 1) + " of " + animation.sprite.frames.length;
 }
 
