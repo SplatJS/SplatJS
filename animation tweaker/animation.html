@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>Animation Tweaker</title>
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		body {
+			background-color: black;
+			color: white;
+		}
+		canvas {
+			display: block;
+			margin: auto;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 0;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+		#loader {
+			background-color: #333;
+			padding: 1em;
+		}
+		#controls {
+			padding: 1em;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="game" width="1136" height="640"></canvas>
+	<script type="text/javascript" src="../splat.js"></script>
+	<script type="text/javascript" src="animation.js"></script>
+
+	<div id="loader">
+		<div>
+			Filename: <input id="filename" type="text" />
+			<button id="load">Load</button>
+		</div>
+		<div>
+			Frames: <input id="frames" type="text" value="1" />
+		</div>
+		<div>
+			ms per frame: <input id="msPerFrame" type="text" value="100" />
+		</div>
+	</div>
+	<div id="controls">
+		<div>
+			Width: <input id="width" type="text"/>
+		</div>
+		<div>
+			Height: <input id="height" type="text"/>
+		</div>
+		<div>
+			Offset X: <input id="offsetX" type="text"/>
+		</div>
+		<div>
+			Offset Y: <input id="offsetY" type="text"/>
+		</div>
+		<div>
+			<label><input id="running" type="checkbox" checked="checked"/> Running</label>
+			<button id="step">Step</button>
+		</div>
+		<div>
+			<span id="frameCounter" />
+		</div>
+	</div>
+</body>
+</html>
