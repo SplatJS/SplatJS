@@ -1,5 +1,5 @@
 
-SOURCES = $(shell find . -type f -iname "*.js" | grep -v ./splat.js)
+SOURCES = $(shell find lib -type f -iname "*.js" | grep -v ./splat.js)
 OUTPUT = splat.js
 
 splat.js: $(SOURCES)
