@@ -14,4 +14,4 @@ Build with make:
 
     make
 
-`splat.js` is the built library you can include in your game with a <script> tag.
+`splat.js` is the built library you can include in your game with a &lt;script&gt; tag.
