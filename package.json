@@ -1,12 +1,12 @@
 {
 	"name": "splat2d",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "A 2D HTML5 Canvas game engine",
 	"main": "lib/main.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"jshint": "jshint lib/*.js",
-		"build": "browserify lib/main.js -o splat.js -s Splat"
+		"prepublish": "browserify lib/main.js -o splat.js -s Splat"
 	},
 	"repository": {
 		"type": "git",
