@@ -1,28 +1,55 @@
 {
-  "name": "splat2d",
-  "version": "0.0.0",
-  "description": "A 2D HTML5 Canvas game engine",
-  "main": "lib/main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ericlathrop/splat.git"
-  },
-  "keywords": [
-    "html5",
-    "canvas",
-    "game",
-    "browser"
-  ],
-  "author": "Eric Lathrop <eric@ericlathrop.com> (http://ericlathrop.com)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ericlathrop/splat/issues"
-  },
-  "homepage": "https://github.com/ericlathrop/splat",
-  "devDependencies": {
-    "browserify": "~3.24.11"
-  }
+	"name": "splat2d",
+	"version": "0.0.0",
+	"description": "A 2D HTML5 Canvas game engine",
+	"main": "lib/main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"jshint": "jshint lib/*.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ericlathrop/splat.git"
+	},
+	"keywords": [
+		"html5",
+		"canvas",
+		"game",
+		"browser"
+	],
+	"author": "Eric Lathrop <eric@ericlathrop.com> (http://ericlathrop.com)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ericlathrop/splat/issues"
+	},
+	"homepage": "https://github.com/ericlathrop/splat",
+	"devDependencies": {
+		"browserify": "~3.24.11",
+		"jshint": "^2.4.4"
+	},
+	"jshintConfig": {
+		"camelcase": true,
+		"curly": true,
+		"eqeqeq": true,
+		"forin": true,
+		"freeze": true,
+		"immed": true,
+		"indent": 4,
+		"latedef": "nofunc",
+		"newcap": true,
+		"noarg": true,
+		"noempty": true,
+		"nonbsp": true,
+		"nonew": true,
+		"quotmark": "double",
+		"unused": "strict",
+		"trailing": true,
+		"browser": true,
+		"devel": true,
+		"globalstrict": true,
+		"globals": {
+			"module": false,
+			"require": false
+		}
+	}
 }
