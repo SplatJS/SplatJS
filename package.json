@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"jshint": "jshint lib/*.js",
-		"prepublish": "browserify lib/main.js -o splat.js -s Splat",
+		"browserify": "browserify lib/main.js -o splat.js -s Splat",
 		"jsdoc": "jsdoc -d docs README.md lib/*.js"
 	},
 	"repository": {
