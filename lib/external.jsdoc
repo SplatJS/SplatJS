@@ -1,0 +1,20 @@
+/**
+ * The built-in image DOM element.
+ * @typedef image
+ * @external image
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement Image at the Mozilla Developer Network}
+ */
+
+/**
+ * The built-in canvas DOM element.
+ * @typedef canvas
+ * @external canvas
+ * @see {@link https://developer.mozilla.org/en-US/docs/HTML/Canvas Canvas at the Mozilla Developer Network}
+ */
+
+/**
+ * The built-in 2D rendering context for the drawing surface of a {@link external:canvas}.
+ * @typedef CanvasRenderingContext2D
+ * @external CanvasRenderingContext2D
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D CanvasRenderingContext2D at the Mozilla Developer Network}
+ */

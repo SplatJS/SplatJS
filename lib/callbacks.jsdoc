@@ -1,0 +1,6 @@
+/**
+ * A callback to draw an element
+ * @callback drawCallback
+ * @param {external:CanvasRenderingContext2D} context The context to use for drawing
+ */
+
