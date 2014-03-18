@@ -6,7 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"jshint": "jshint lib/*.js",
-		"prepublish": "browserify lib/main.js -o splat.js -s Splat"
+		"prepublish": "browserify lib/main.js -o splat.js -s Splat",
+		"jsdoc": "jsdoc -d docs README.md lib/*.js"
 	},
 	"repository": {
 		"type": "git",
@@ -26,7 +27,8 @@
 	"homepage": "https://github.com/ericlathrop/splat",
 	"devDependencies": {
 		"browserify": "~3.24.11",
-		"jshint": "^2.4.4"
+		"jshint": "^2.4.4",
+		"jsdoc": "^3.3.0-alpha5"
 	},
 	"jshintConfig": {
 		"camelcase": true,
