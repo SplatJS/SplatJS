@@ -1,5 +1,15 @@
 /**
- * A callback to draw an element
+ * A callback that takes no parameters, and returns nothing.
+ * See the user for the description of what it should do.
+ * @callback emptyCallback
+ */
+/**
+ * A callback to perform a single step in a simulation.
+ * @callback simulationCallback
+ * @param {number} elapsedMillis The number of milliseconds to advance the simulation by
+ */
+/**
+ * A callback to perform drawing operations on a canvas
  * @callback drawCallback
  * @param {external:CanvasRenderingContext2D} context The context to use for drawing
  */
