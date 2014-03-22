@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: buffer</title>
+    <title>JSDoc: Class: Camera</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: buffer</h1>
+    <h1 class="page-title">Class: Camera</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    buffer
+    Camera
     </h2>
     
 </header>
@@ -38,65 +38,8 @@
 
     
         
-
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
 <dt>
-    <h4 class="name" id="flipBufferHorizontally"><span class="type-signature">&lt;inner> </span>flipBufferHorizontally<span class="signature">(buffer)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
+    <h4 class="name" id="Camera"><span class="type-signature"></span>new Camera<span class="signature">(x, y, width, height)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -104,7 +47,10 @@
 
     
     <div class="description">
-        Make a horizonally-flipped copy of a buffer or image.
+        A basic camera. It's really an <a href="Entity.html">Entity</a>, so you can control it in the same way.
+By changing <a href="Entity.html#x">Entity#x</a> and <a href="Entity.html#y">Entity#y</a> you control what portion of the canvas is viewable.
+For example, if the Camera is at 50,50, and you draw a rectangle at 200,200,
+it will appear on the screen at 150,150.
     </div>
     
 
@@ -138,16 +84,13 @@
 
         <tr>
             
-                <td class="name"><code>buffer</code></td>
+                <td class="name"><code>x</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-|
-
-<span class="param-type"><a href="external-image.html">external:image</a></span>
+<span class="param-type">number</span>
 
 
             
@@ -157,141 +100,20 @@
 
             
 
-            <td class="description last">The original image</td>
+            <td class="description last">The top-left x coordinate</td>
         </tr>
 
-    
-    </tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line37">line 37</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    The flipped buffer
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="flipBufferVertically"><span class="type-signature">&lt;inner> </span>flipBufferVertically<span class="signature">(buffer)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Make a vertically-flipped copy of a buffer or image.
-    </div>
-    
-
-    
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>buffer</code></td>
+                <td class="name"><code>y</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-|
-
-<span class="param-type"><a href="external-image.html">external:image</a></span>
+<span class="param-type">number</span>
 
 
             
@@ -301,127 +123,9 @@
 
             
 
-            <td class="description last">The original image</td>
+            <td class="description last">The top-left y coordinate</td>
         </tr>
 
-    
-    </tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    The flipped buffer
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="makeBuffer"><span class="type-signature">&lt;inner> </span>makeBuffer<span class="signature">(width, height, drawFun)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Make an invisible canvas buffer, and draw on it.
-    </div>
-    
-
-    
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -442,7 +146,7 @@
 
             
 
-            <td class="description last">The width of the buffer</td>
+            <td class="description last">The width on the x-axis. Currently doesn't do anything.</td>
         </tr>
 
     
@@ -465,30 +169,7 @@
 
             
 
-            <td class="description last">The height of the buffer</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>drawFun</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#drawCallback">drawCallback</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The callback that draws on the buffer</td>
+            <td class="description last">The height on the y-axis. Currently doesn't do anything.</td>
         </tr>
 
     
@@ -519,7 +200,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line25">line 25</a>
+        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -542,28 +223,288 @@
     
 
     
-    <h5>Returns:</h5>
+
     
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
             
-<div class="param-desc">
-    The drawn buffer
-</div>
+<dt>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(context)</span><span class="type-signature"></span></h4>
 
+    
+</dt>
+<dd>
 
+    
+    <div class="description">
+        Offset all following draw operations on the canvas.
+This is automatically called for you by <a href="Scene.html">Scene</a>.
+    </div>
+    
 
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
         
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">external:CanvasRendingContext2D</span>
 
 
-    </dd>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The context to offset</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
 </dl>
 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
         
+            
+<dt>
+    <h4 class="name" id="drawAbsolute"><span class="type-signature"></span>drawAbsolute<span class="signature">(context, context)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Draw on the canvas at not-offset coordinates.
+For example, if the camera is at 50,50 and you draw a rectangle at 200,200
+it will appear on the screen at 200,200.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">external:CanvasRendingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The context to offset</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#drawCallback">drawCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback the performs the non-offset drawing.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 </dd>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Timer</title>
+    <title>JSDoc: Class: Scene</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Timer</h1>
+    <h1 class="page-title">Class: Scene</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    Timer
+    Scene
     </h2>
     
 </header>
@@ -39,7 +39,7 @@
     
         
 <dt>
-    <h4 class="name" id="Timer"><span class="type-signature"></span>new Timer<span class="signature">(onTick, expireMillis, onExpire)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Scene"><span class="type-signature"></span>new Scene<span class="signature">(canvas, initFunc, simulationFunc, drawFunc)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -47,7 +47,7 @@
 
     
     <div class="description">
-        A timer that calls callbacks while it is running, and when it expires.
+        A Scene handles the render loop for the game.
     </div>
     
 
@@ -81,13 +81,13 @@
 
         <tr>
             
-                <td class="name"><code>onTick</code></td>
+                <td class="name"><code>canvas</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#simulationCallback">simulationCallback</a></span>
+<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
 
 
             
@@ -97,37 +97,14 @@
 
             
 
-            <td class="description last">Called when the Timer is <a href="Timer.html#tick">tick()</a>ed</td>
+            <td class="description last">The canvas to render on.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>expireMillis</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The number of milliseconds until the Timer expires</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>onExpire</code></td>
+                <td class="name"><code>initFunc</code></td>
             
 
             <td class="type">
@@ -143,7 +120,53 @@
 
             
 
-            <td class="description last">Called when the Timer expires</td>
+            <td class="description last">A callback to be called every time the Scene is <a href="Scene.html#start">started</a>.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>simulationFunc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#simulationCallback">simulationCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A callback that updates the state of the game's simulation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>drawFunc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#drawCallback">drawCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A callback that draws the game.</td>
         </tr>
 
     
@@ -174,7 +197,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line10">line 10</a>
+        <a href="scene.js.html">scene.js</a>, <a href="scene.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -215,29 +238,33 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         <dl>
             
 <dt>
-    <h4 class="name" id="expired"><span class="type-signature"></span>expired<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="camera"><span class="type-signature"></span>camera<span class="type-signature"> :<a href="Camera.html">Camera</a></span></h4>
 
     
 </dt>
 <dd>
-
     
     <div class="description">
-        Test if the Timer has expired.
+        The Camera used to offset the Scene's drawing.
+This Camera's <a href="Entity.html#move">move</a> and <a href="Camera.html#draw">draw</a> methods are called automatically for you. The default Camera starts at the origin (0,0).
     </div>
     
 
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Camera.html">Camera</a></span>
 
-    
 
+            </li>
+        </ul>
     
 
     
@@ -263,7 +290,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line90">line 90</a>
+        <a href="scene.js.html">scene.js</a>, <a href="scene.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -278,37 +305,147 @@
     
 
     
+</dd>
 
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
         
+            
+<dt>
+    <h4 class="name" id="showFrameRate"><span class="type-signature"></span>showFrameRate<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        A flag that enables/disables a frame rate counter in the corner of the screen. This is useful during development.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
 <span class="param-type">boolean</span>
 
 
-    </dd>
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scene.js.html">scene.js</a>, <a href="scene.js.html#line73">line 73</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
 </dl>
 
-        
+
+    
 
     
 </dd>
 
         
+            
+<dt>
+    <h4 class="name" id="timers"><span class="type-signature"></span>timers<span class="type-signature"> :object</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        A key-value store of named timers. Timers in this object will be automatically <a href="Timer.html#tick">ticked</a> for you when the scene is running.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scene.js.html">scene.js</a>, <a href="scene.js.html#line61">line 61</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
             
 <dt>
     <h4 class="name" id="reset"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
@@ -319,8 +456,7 @@
 
     
     <div class="description">
-        Zeroes the timer.
-This does not <a href="Timer.html#stop">stop</a> the Timer!
+        Reset the simulation by re-running the Scene#initFunc.
     </div>
     
 
@@ -353,7 +489,7 @@ This does not <a href="Timer.html#stop">stop</a> the Timer!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line61">line 61</a>
+        <a href="scene.js.html">scene.js</a>, <a href="scene.js.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -391,8 +527,7 @@ This does not <a href="Timer.html#stop">stop</a> the Timer!
 
     
     <div class="description">
-        Start the Timer running.
-This does not <a href="Timer.html#reset">reset</a> the Timer!
+        Start running the scene.
     </div>
     
 
@@ -425,7 +560,7 @@ This does not <a href="Timer.html#reset">reset</a> the Timer!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line47">line 47</a>
+        <a href="scene.js.html">scene.js</a>, <a href="scene.js.html#line78">line 78</a>
     </li></ul></dd>
     
 
@@ -463,8 +598,7 @@ This does not <a href="Timer.html#reset">reset</a> the Timer!
 
     
     <div class="description">
-        Stop the Timer.
-This does not <a href="Timer.html#reset">reset</a> the Timer!
+        Stop running the scene.
     </div>
     
 
@@ -497,127 +631,7 @@ This does not <a href="Timer.html#reset">reset</a> the Timer!
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line54">line 54</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="tick"><span class="type-signature"></span>tick<span class="signature">(elapsedMillis)</span><span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Advance the Timer.
-Normally <a href="Scene.html">Scene</a> does this for you.
-    </div>
-    
-
-    
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>elapsedMillis</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">How many milliseconds to advance the timer.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="timer.js.html">timer.js</a>, <a href="timer.js.html#line69">line 69</a>
+        <a href="scene.js.html">scene.js</a>, <a href="scene.js.html#line88">line 88</a>
     </li></ul></dd>
     
 

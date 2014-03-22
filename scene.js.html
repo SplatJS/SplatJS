@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scene.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scene.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+var Camera = require("./camera");
+
+/**
+ * A Scene handles the render loop for the game.
+ * @constructor
+ * @param {external:canvas} canvas The canvas to render on.
+ * @param {emptyCallback} initFunc A callback to be called every time the Scene is {@link Scene#start started}.
+ * @param {simulationCallback} simulationFunc A callback that updates the state of the game's simulation.
+ * @param {drawCallback} drawFunc A callback that draws the game.
+ */
+function Scene(canvas, initFunc, simulationFunc, drawFunc) {
+	/**
+	 * The canvas to render on.
+	 * @member {external:canvas}
+	 * @private
+	 */
+	this.canvas = canvas;
+	/**
+	 * A callback to be called ever time the Scene is {@link Scene#start started}.
+	 * @member {emptyCallback}
+	 * @private
+	 */
+	this.initFunc = initFunc;
+	/**
+	 * A callback that updates the state of the game's simulation.
+	 * @member {simulationCallback}
+	 * @private
+	 */
+	this.simulationFunc = simulationFunc;
+	/**
+	 * A callback that draws the game.
+	 * @member {drawCallback}
+	 * @private
+	 */
+	this.drawFunc = drawFunc;
+
+	/**
+	 * The drawing context for {@link Scene#canvas}
+	 * @member {external:CanvasRenderingContext2D}
+	 * @private
+	 */
+	this.context = canvas.getContext("2d");
+	/**
+	 * The timestamp of the last frame. Used to determine how many milliseconds elapsed between frames.
+	 * @member {number}
+	 * @private
+	 */
+	this.lastTimestamp = -1;
+	/**
+	 * Whether or not the Scene is currently running.
+	 * @member {boolean}
+	 * @private
+	 */
+	this.running = false;
+	/**
+	 * A key-value store of named timers. Timers in this object will be automatically {@link Timer#tick ticked} for you when the scene is running.
+	 * @member {object}
+	 */
+	this.timers = {};
+
+	/**
+	 * The Camera used to offset the Scene's drawing.
+	 * This Camera's {@link Entity#move move} and {@link Camera#draw draw} methods are called automatically for you. The default Camera starts at the origin (0,0).
+	 * @member {Camera}
+	 */
+	this.camera = new Camera(0, 0, canvas.width, canvas.height);
+	/**
+	 * A flag that enables/disables a frame rate counter in the corner of the screen. This is useful during development.
+	 * @member {boolean}
+	 */
+	this.showFrameRate = false;
+}
+/**
+ * Start running the scene.
+ */
+Scene.prototype.start = function() {
+	this.lastTimestamp = -1;
+	this.running = true;
+	this.initFunc.call(this);
+	var scene = this;
+	window.requestAnimationFrame(function(t) { mainLoop(scene, t); });
+};
+/**
+ * Stop running the scene.
+ */
+Scene.prototype.stop = function() {
+	this.running = false;
+};
+/**
+ * Reset the simulation by re-running the {@link Scene#initFunc}.
+ */
+Scene.prototype.reset = function() {
+	this.initFunc.call(this);
+};
+
+function mainLoop(scene, timestamp) {
+	if (!scene.running) {
+		return;
+	}
+	if (scene.lastTimestamp === -1) {
+		scene.lastTimestamp = timestamp;
+	}
+	var elapsedMillis = timestamp - scene.lastTimestamp;
+	scene.lastTimestamp = timestamp;
+
+	incrementTimers(scene.timers, elapsedMillis);
+	if (!scene.running) {
+		return;
+	}
+	scene.simulationFunc.call(scene, elapsedMillis);
+	scene.camera.move(elapsedMillis);
+
+	scene.context.save();
+	scene.camera.draw(scene.context);
+	scene.drawFunc.call(scene, scene.context);
+
+	if (scene.showFrameRate) {
+		drawFrameRate(scene, elapsedMillis);
+	}
+
+	scene.context.restore();
+
+	if (scene.running) {
+		window.requestAnimationFrame(function(t) { mainLoop(scene, t); });
+	}
+}
+
+function incrementTimers(timers, elapsedMillis) {
+	for (var i in timers) {
+		if (timers.hasOwnProperty(i)) {
+			timers[i].tick(elapsedMillis);
+		}
+	}
+}
+
+function drawFrameRate(scene, elapsedMillis) {
+	var fps = (1000 / elapsedMillis) |0;
+
+	scene.context.font = "24px mono";
+	if (fps &lt; 30) {
+		scene.context.fillStyle = "#ff0000";
+	} else if (fps &lt; 50) {
+		scene.context.fillStyle = "#ffff00";
+	} else {
+		scene.context.fillStyle = "#00ff00";
+	}
+	var msg = fps + " FPS";
+	var w = scene.context.measureText(msg).width;
+	scene.camera.drawAbsolute(scene.context, function() {
+		scene.context.fillText(msg, scene.canvas.width - w - 50, 50);
+	});
+}
+
+module.exports = Scene;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li></ul><h3>Externals</h3><ul><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Camera.html">Camera</a></li><li><a href="Entity.html">Entity</a></li><li><a href="Scene.html">Scene</a></li><li><a href="Timer.html">Timer</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Sat Mar 22 2014 12:37:49 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
