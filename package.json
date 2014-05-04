@@ -4,10 +4,10 @@
 	"description": "A 2D HTML5 Canvas game engine",
 	"main": "lib/main.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"jshint": "jshint lib/*.js",
-		"browserify": "browserify lib/main.js -o splat.js -s Splat",
-		"jsdoc": "jsdoc -d docs README.md lib/*.js lib/*.jsdoc"
+		"lint-js": "jshint lib/*.js",
+		"build-js": "browserify lib/main.js -o splat.js -s Splat",
+		"build-docs": "jsdoc -d docs README.md lib/*.js lib/*.jsdoc",
+		"build": "npm run lint-js && npm run build-js && npm run build-docs"
 	},
 	"repository": {
 		"type": "git",
