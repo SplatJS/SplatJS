@@ -91,19 +91,53 @@ function bindControls(entity) {
 	});
 }
 
+function loadFileIntoBuffer(file, callback) {
+	var fr = new FileReader();
+	fr.addEventListener("loadend", function() {
+		var img = new Image();
+		img.addEventListener("load", function() {
+			var buffer = Splat.makeBuffer(img.width, img.height, function(context) {
+				context.drawImage(img, 0, 0);
+			});
+			callback(buffer);
+		});
+		img.src = fr.result;
+	});
+	fr.readAsDataURL(file);
+}
+
+function getFrames(filename) {
+	var matches = filename.match(/f(\d+)/);
+	if (matches && matches.length > 1) {
+		return parseInt(matches[1]);
+	}
+	return 1;
+}
+
 var controls;
 window.addEventListener("load", function() {
 	controls = findControls();
 
-	controls.load.addEventListener("click", function() {
-		animationTweaker.scenes.scenes["title"].stop();
-		loadCount++;
-		animationTweaker.animations.load("animation" + loadCount, {
-			"strip": controls.filename.value,
-			"frames": parseInt(controls.frames.value),
-			"msPerFrame": parseInt(controls.msPerFrame.value),
+	controls.file.addEventListener("change", function() {
+		var file = controls.file.files[0];
+		loadFileIntoBuffer(file, function(buffer) {
+			animationTweaker.scenes.scenes["title"].stop();
+			loadCount++;
+
+			var name = "animation" + loadCount;
+			// FIXME: this is violating imageloader's privacy. there should be an official way of forcing an image into it
+			animationTweaker.images.names.push(name);
+			animationTweaker.images.images[name] = buffer;
+
+			var frames = getFrames(file.name);
+			controls.frames.innerHTML = frames;
+			animationTweaker.animations.load(name, {
+				"strip": name,
+				"frames": frames,
+				"msPerFrame": parseInt(controls.msPerFrame.value),
+			});
+			animationTweaker.scenes.switchTo("loading");
 		});
-		animationTweaker.scenes.switchTo("loading");
 	});
 });
 
@@ -116,8 +150,7 @@ function findControls() {
 		"running": document.getElementById("running"),
 		"step": document.getElementById("step"),
 		"frameCounter": document.getElementById("frameCounter"),
-		"filename": document.getElementById("filename"),
-		"load": document.getElementById("load"),
+		"file": document.getElementById("file"),
 		"frames": document.getElementById("frames"),
 		"msPerFrame": document.getElementById("msPerFrame"),
 	};
