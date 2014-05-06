@@ -33,7 +33,7 @@ Installation
 **This is still a work-in-progress.**
 
 Options:
-1. Copy the demo pong repository and modify it. **DOESN'T EXIST YET**
+1. Copy the [Splat Pong](https://github.com/mintleaf/splatpong) repository and modify it.
 2. Download a prebuilt splat.js file from **SOMEWHERE**.
 3. `npm install splat2d` and use [browserify](http://browserify.org/) to `require()` it into your game and produce a single, minified .js file.
 4. `git submodule add http://github.com/ericlathrop/splat.git` then `cd splat` then `npm run-script browserify`
