@@ -41,6 +41,8 @@ Options:
 Games using Splat
 =================
 
+* [Mr. Fluffykin's Great Sorting Adventure](http://www.ludumdare.com/compo/ludum-dare-29/?action=preview&uid=37347)
+* [Arkeynoid](http://mintchipleaf.com/games/ludum/)
 * [Kickbot](http://twoscoopgames.com/kickbotgame/)
 * [base.jump](http://mintchipleaf.com/games/basejump/)
 * [Apartment 213](http://twoscoopgames.com/apt-213game/)
