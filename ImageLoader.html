@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Camera</title>
+    <title>JSDoc: Class: ImageLoader</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Camera</h1>
+    <h1 class="page-title">Class: ImageLoader</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    Camera
+    ImageLoader
     </h2>
     
 </header>
@@ -39,7 +39,7 @@
     
         
 <dt>
-    <h4 class="name" id="Camera"><span class="type-signature"></span>new Camera<span class="signature">(x, y, width, height)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ImageLoader"><span class="type-signature"></span>new ImageLoader<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -47,10 +47,7 @@
 
     
     <div class="description">
-        A basic camera. It's really an <a href="Entity.html">Entity</a>, so you can control it in the same way.
-By changing <a href="Entity.html#x">Entity#x</a> and <a href="Entity.html#y">Entity#y</a> you control what portion of the canvas is viewable.
-For example, if the Camera is at 50,50, and you draw a rectangle at 200,200,
-it will appear on the screen at 150,150.
+        Loads <a href="external-image.html">external:image</a>s and lets you know when they're all available. This is typically set up for you by <a href="Game.html">Game</a>.
     </div>
     
 
@@ -58,123 +55,6 @@ it will appear on the screen at 150,150.
 
     
 
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The top-left x coordinate</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The top-left y coordinate</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>width</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The width on the x-axis. Currently doesn't do anything.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The height on the y-axis. Currently doesn't do anything.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
     
 
     
@@ -200,7 +80,7 @@ it will appear on the screen at 150,150.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line16">line 16</a>
+        <a href="image_loader.js.html">image_loader.js</a>, <a href="image_loader.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -248,7 +128,7 @@ it will appear on the screen at 150,150.
         <dl>
             
 <dt>
-    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(context)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="allLoaded"><span class="type-signature"></span>allLoaded<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 </dt>
@@ -256,8 +136,7 @@ it will appear on the screen at 150,150.
 
     
     <div class="description">
-        Offset all following draw operations on the canvas.
-This is automatically called for you by <a href="Scene.html">Scene</a>.
+        Test if all <a href="external-image.html">external:image</a>s have loaded.
     </div>
     
 
@@ -265,54 +144,6 @@ This is automatically called for you by <a href="Scene.html">Scene</a>.
 
     
 
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">external:CanvasRendingContext2D</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The context to offset</td>
-        </tr>
-
-    
-    </tbody>
-</table>
     
 
     
@@ -338,7 +169,7 @@ This is automatically called for you by <a href="Scene.html">Scene</a>.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line25">line 25</a>
+        <a href="image_loader.js.html">image_loader.js</a>, <a href="image_loader.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -361,6 +192,24 @@ This is automatically called for you by <a href="Scene.html">Scene</a>.
     
 
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+        
 
     
 </dd>
@@ -368,7 +217,7 @@ This is automatically called for you by <a href="Scene.html">Scene</a>.
         
             
 <dt>
-    <h4 class="name" id="drawAbsolute"><span class="type-signature"></span>drawAbsolute<span class="signature">(context, context)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(name)</span><span class="type-signature"> &rarr; {<a href="external-image.html">external:image</a>}</span></h4>
 
     
 </dt>
@@ -376,9 +225,7 @@ This is automatically called for you by <a href="Scene.html">Scene</a>.
 
     
     <div class="description">
-        Draw on the canvas at not-offset coordinates.
-For example, if the camera is at 50,50 and you draw a rectangle at 200,200
-it will appear on the screen at 200,200.
+        Retrieve a loaded <a href="external-image.html">external:image</a>.
     </div>
     
 
@@ -412,13 +259,13 @@ it will appear on the screen at 200,200.
 
         <tr>
             
-                <td class="name"><code>context</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">external:CanvasRendingContext2D</span>
+<span class="param-type">string</span>
 
 
             
@@ -428,30 +275,7 @@ it will appear on the screen at 200,200.
 
             
 
-            <td class="description last">The context to offset</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>context</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#drawCallback">drawCallback</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The callback the performs the non-offset drawing.</td>
+            <td class="description last">The name given to the image during <a href="ImageLoader.html#load">ImageLoader#load</a>.</td>
         </tr>
 
     
@@ -482,7 +306,167 @@ it will appear on the screen at 200,200.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line35">line 35</a>
+        <a href="image_loader.js.html">image_loader.js</a>, <a href="image_loader.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="external-image.html">external:image</a></span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="load"><span class="type-signature"></span>load<span class="signature">(name, path)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Load an <a href="external-image.html">external:image</a>.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name you want to use when you <a href="ImageLoader.html#get">ImageLoader#get</a> the <a href="external-image.html">external:image</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The path of the <a href="external-image.html">external:image</a>.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="image_loader.js.html">image_loader.js</a>, <a href="image_loader.js.html#line38">line 38</a>
     </li></ul></dd>
     
 

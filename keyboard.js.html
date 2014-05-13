@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: External: canvas</title>
+    <title>JSDoc: Source: keyboard.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,96 +17,76 @@
 
 <div id="main">
 
-    <h1 class="page-title">External: canvas</h1>
+    <h1 class="page-title">Source: keyboard.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
-    canvas
-    </h2>
     
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * Keyboard input handling. This is typically set up for you by {@link Game}.
+ * @constructor
+ * @param {object} keymap A map of keycodes to descriptive key names.
+ */
+function Keyboard(keyMap) {
+	/**
+	 * The current key states.
+	 * @member {object}
+	 * @private
+	 */
+	this.keys = {};
 
-    
-        
-            <div class="description">The built-in canvas DOM element.</div>
-        
+	var self = this;
+	for (var kc in keyMap) {
+		if (keyMap.hasOwnProperty(kc)) {
+			this.keys[keyMap[kc]] = 0;
+		}
+	}
+	window.addEventListener("keydown", function(event) {
+		if (keyMap.hasOwnProperty(event.keyCode)) {
+			if (self.keys[keyMap[event.keyCode]] === 0) {
+				self.keys[keyMap[event.keyCode]] = 2;
+			}
+			return false;
+		}
+	});
+	window.addEventListener("keyup", function(event) {
+		if (keyMap.hasOwnProperty(event.keyCode)) {
+			self.keys[keyMap[event.keyCode]] = 0;
+			return false;
+		}
+	});
+}
+/**
+ * Test if a key is currently pressed.
+ * @param {string} name The name of the key to test
+ * @returns {boolean}
+ */
+Keyboard.prototype.isPressed = function(name) {
+	return this.keys[name] >= 1;
+};
+/**
+ * Test if a key is currently pressed, also making it look like the key was unpressed.
+ * This makes is so multiple successive calls will not return true unless the key was repressed.
+ * @param {string} name The name of the key to test
+ * @returns {boolean}
+ */
+Keyboard.prototype.consumePressed = function(name) {
+	var p = this.keys[name] === 2;
+	if (p) {
+		this.keys[name] = 1;
+	}
+	return p;
+};
 
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="external.jsdoc.html">external.jsdoc</a>, <a href="external.jsdoc.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas">Canvas at the Mozilla Developer Network</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+module.exports = Keyboard;
+</code></pre>
+        </article>
+    </section>
 
 
 

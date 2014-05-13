@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: External: canvas</title>
+    <title>JSDoc: Source: accelerometer.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,96 +17,49 @@
 
 <div id="main">
 
-    <h1 class="page-title">External: canvas</h1>
+    <h1 class="page-title">Source: accelerometer.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
-    canvas
-    </h2>
     
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * Holds the current orientation of the device if the device has an accelerometer.
+ * @constructor
+ */
+function Accelerometer() {
+	/**
+	 * The angle of the device rotated around the z-axis. The z-axis is the axis coming out of the device screen. alpha represents how much the devies is spun around the center of the screen.
+	 * @member {number}
+	 */
+	this.alpha = 0;
+	/**
+	 * The angle of the device rotated around the x-axis. The x-axis is horizontal across the device screen. beta represents how much the device is tilted forward or backward.
+	 * @member {number}
+	 */
+	this.beta = 0;
+	/**
+	 * The angle of the device rotated around the y-axis. The y-axis is vertical across the device screen. gamma represents how much the device is turned left or right.
+	 * @member {number}
+	 */
+	this.gamma = 0;
 
-    
-        
-            <div class="description">The built-in canvas DOM element.</div>
-        
+	var self = this;
+	window.addEventListener("deviceorientation", function(event) {
+		self.alpha = event.alpha;
+		self.beta = event.beta;
+		self.gamma = event.gamma;
+	}, false);
+}
 
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="external.jsdoc.html">external.jsdoc</a>, <a href="external.jsdoc.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas">Canvas at the Mozilla Developer Network</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+module.exports = Accelerometer;
+</code></pre>
+        </article>
+    </section>
 
 
 

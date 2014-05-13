@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: camera.js</title>
+    <title>JSDoc: Source: image_loader.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: camera.js</h1>
+    <h1 class="page-title">Source: image_loader.js</h1>
 
     
 
@@ -27,46 +27,82 @@
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
 
-var Entity = require("./entity");
-
 /**
- * A basic camera. It's really an {@link Entity}, so you can control it in the same way.
- * By changing {@link Entity#x} and {@link Entity#y} you control what portion of the canvas is viewable.
- * For example, if the Camera is at 50,50, and you draw a rectangle at 200,200,
- * it will appear on the screen at 150,150.
+ * Loads {@link external:image}s and lets you know when they're all available. This is typically set up for you by {@link Game}.
  * @constructor
- * @param {number} x The top-left x coordinate
- * @param {number} y The top-left y coordinate
- * @param {number} width The width on the x-axis. Currently doesn't do anything.
- * @param {number} height The height on the y-axis. Currently doesn't do anything.
  */
-function Camera(x, y, width, height) {
-	Entity.call(this, x, y, width, height);
+function ImageLoader() {
+	/**
+	 * The key-value object that stores named {@link external:image}s
+	 * @member {object}
+	 * @private
+	 */
+	this.images = {};
+	/**
+	 * The total number of images to be loaded.
+	 * @member {number}
+	 * @private
+	 */
+	this.totalImages = 0;
+	/**
+	 * The number of images that have loaded completely.
+	 * @member {number}
+	 * @private
+	 */
+	this.loadedImages = 0;
+	/**
+	 * The names of all the images that were requested to be loaded.
+	 * @member {Array}
+	 * @private
+	 */
+	this.names = [];
 }
-Camera.prototype = Object.create(Entity.prototype);
 /**
- * Offset all following draw operations on the canvas.
- * This is automatically called for you by {@link Scene}.
- * @param {external:CanvasRendingContext2D} context The context to offset
+ * Load an {@link external:image}.
+ * @param {string} name The name you want to use when you {@link ImageLoader#get} the {@link external:image}
+ * @param {string} path The path of the {@link external:image}.
  */
-Camera.prototype.draw = function(context) {
-	context.translate(-(this.x|0), -(this.y|0));
+ImageLoader.prototype.load = function(name, path) {
+	// only load an image once
+	if (this.names.indexOf(name) > -1) {
+		return;
+	}
+	this.names.push(name);
+
+	this.totalImages++;
+
+	var img = new Image();
+	var self = this;
+	img.addEventListener("load", function() {
+		self.loadedImages++;
+		self.images[name] = img;
+	});
+	img.addEventListener("error", function() {
+		console.error("Error loading image " + path);
+	});
+	img.src = path;
 };
 /**
- * Draw on the canvas at not-offset coordinates.
- * For example, if the camera is at 50,50 and you draw a rectangle at 200,200
- * it will appear on the screen at 200,200.
- * @param {external:CanvasRendingContext2D} context The context to offset
- * @param {drawCallback} context The callback the performs the non-offset drawing.
+ * Test if all {@link external:image}s have loaded.
+ * @returns {boolean}
  */
-Camera.prototype.drawAbsolute = function(context, drawFunc) {
-	context.save();
-	context.translate(this.x|0, this.y|0);
-	drawFunc();
-	context.restore();
+ImageLoader.prototype.allLoaded = function() {
+	return this.totalImages === this.loadedImages;
+};
+/**
+ * Retrieve a loaded {@link external:image}.
+ * @param {string} name The name given to the image during {@link ImageLoader#load}.
+ * @returns {external:image}
+ */
+ImageLoader.prototype.get = function(name) {
+	var img = this.images[name];
+	if (img === undefined) {
+		console.error("Unknown image: " + name);
+	}
+	return img;
 };
 
-module.exports = Camera;
+module.exports = ImageLoader;
 </code></pre>
         </article>
     </section>
