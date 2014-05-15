@@ -24,3 +24,10 @@
  * If compareFunction(a, b) returns 0, then don't change the order of a relative to b.
  * If compareFunction(a, b) returns greater than 0, then b comes first.
  */
+/**
+ * A function that tests if a given coordinate can be travelled across.
+ * @callback isWalkable
+ * @param {number} x The position along the x-axis on a grid
+ * @param {number} y The position along the y-axis on a grid
+ * @returns {boolean}
+ */
