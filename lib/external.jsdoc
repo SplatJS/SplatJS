@@ -18,3 +18,10 @@
  * @external CanvasRenderingContext2D
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D CanvasRenderingContext2D at the Mozilla Developer Network}
  */
+
+/**
+ * The built-in Web Audio API audio context.
+ * @typedef AudioContext
+ * @external AudioContext
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/AudioContext AudioContext at the Mozilla Developer Network}
+ */
