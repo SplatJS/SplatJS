@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Try Splat</title>
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		body {
+			background-color: white;
+			color: black;
+		}
+		canvas {
+			display: block;
+			margin: auto;
+			padding: 0;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+			border: 1px solid #ccc;
+		}
+		.col-2 {
+			float: left;
+			width: 50%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Try Splat</h1>
+	<div class="col-2">
+		<div>
+			<button id="run">Run</button>
+		</div>
+		<textarea id="code" cols="80" rows="60">
+var canvas = document.getElementById("canvas");
+var manifest = {
+	"images": {},
+	"sounds": {},
+	"fonts": {},
+	"animations": {}
+};
+
+var game = new Splat.Game(canvas, manifest);
+
+game.scenes.add("title", new Splat.Scene(canvas, function() {
+	// initialize the scene
+
+	this.player = new Splat.Entity(100, 100, 30, 30);
+	this.player.draw = function(context) {
+		context.fillStyle = "#ff0000";
+		context.fillRect(this.x, this.y, this.width, this.height);
+	};
+
+	this.floor = new Splat.Entity(0, 220, canvas.width, 20);
+	this.floor.draw = function(context) {
+		context.fillStyle = "#0000ff";
+		context.fillRect(this.x, this.y, this.width, this.height);
+	};
+}, function(elapsedMillis) {
+	// update the simulation / call .move() on everything
+
+	this.player.vx *= 0.9; // friction
+	this.player.vy += 0.01; // gravity
+
+	if (game.keyboard.isPressed("left")) {
+		this.player.vx = -0.3;
+	}
+	if (game.keyboard.isPressed("right")) {
+		this.player.vx = 0.3;
+	}
+
+	this.player.move(elapsedMillis);
+
+	if (this.player.collides(this.floor)) {
+		this.player.resolveCollisionWith(this.floor);
+		if (game.keyboard.isPressed("up")) {
+			this.player.vy = -0.3;
+		}
+	}
+}, function(context) {
+	// draw the frame / call .draw() on everything
+
+	context.fillStyle = "#000000";
+	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	this.floor.draw(context);
+	this.player.draw(context);
+}));
+
+game.scenes.switchTo("loading");
+		</textarea>
+	</div>
+	<div class="col-2">
+	</div>
+	<canvas id="canvas" width="320" height="240"></canvas>
+	<script type="text/javascript" src="../splat.js"></script>
+	<script type="text/javascript" src="try.js"></script>
+</body>
+</html>
