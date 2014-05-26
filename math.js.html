@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: buffer.js</title>
+    <title>JSDoc: Source: math.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: buffer.js</h1>
+    <h1 class="page-title">Source: math.js</h1>
 
     
 
@@ -26,64 +26,29 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
-/** @module buffer */
 
 /**
- * Make an invisible {@link canvas}.
- * @param {number} width The width of the canvas
- * @param {number} height The height of the canvas
- * @returns {external:canvas} A canvas DOM element
- * @private
+ * Oscillate between -1 and 1 given a value and a period. This is basically a simplification on using Math.sin().
+ * @alias Splat.math.oscillate
+ * @param {number} current The current value of the number you want to oscillate.
+ * @param {number} period The period, or how often the number oscillates. The return value will oscillate between -1 and 1, depending on how close current is to a multiple of period.
+ * @returns A number between -1 and 1.
+ * @example
+Splat.math.oscillate(0, 100); // returns 0
+Splat.math.oscillate(100, 100); // returns 0-ish
+Splat.math.oscillate(50, 100); // returns 1
+Splat.math.oscillate(150, 100); // returns -1
+Splat.math.oscillate(200, 100); // returns 0-ish
  */
-function makeCanvas(width, height) {
-	var c = document.createElement("canvas");
-	c.width = width;
-	c.height = height;
-	return c;
+function oscillate(current, period) {
+	return Math.sin(current / period * Math.PI);
 }
 
 /**
- * Make an invisible canvas buffer, and draw on it.
- * @param {number} width The width of the buffer
- * @param {number} height The height of the buffer
- * @param {drawCallback} drawFun The callback that draws on the buffer
- * @returns {external:canvas} The drawn buffer
+ * @namespace Splat.math
  */
-function makeBuffer(width, height, drawFun) {
-	var canvas = makeCanvas(width, height);
-	var ctx = canvas.getContext("2d");
-	drawFun(ctx);
-	return canvas;
-}
-
-/**
- * Make a horizonally-flipped copy of a buffer or image.
- * @param {external:canvas|external:image} buffer The original image
- * @return {external:canvas} The flipped buffer
- */
-function flipBufferHorizontally(buffer) {
-	return makeBuffer(buffer.width, buffer.height, function(context) {
-		context.scale(-1, 1);
-		context.drawImage(buffer, -buffer.width, 0);
-	});
-}
-
-/**
- * Make a vertically-flipped copy of a buffer or image.
- * @param {external:canvas|external:image} buffer The original image
- * @return {external:canvas} The flipped buffer
- */
-function flipBufferVertically(buffer) {
-	return makeBuffer(buffer.width, buffer.height, function(context) {
-		context.scale(1, -1);
-		context.drawImage(buffer, 0, -buffer.height);
-	});
-}
-
 module.exports = {
-	makeBuffer: makeBuffer,
-	flipBufferHorizontally: flipBufferHorizontally,
-	flipBufferVertically: flipBufferVertically
+	oscillate: oscillate
 };
 </code></pre>
         </article>

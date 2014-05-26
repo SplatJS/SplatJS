@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ninepatch.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ninepatch.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+var buffer = require("./buffer");
+
+function getContextForImage(image) {
+	var ctx;
+	buffer.makeBuffer(image.width, image.height, function(context) {
+		context.drawImage(image, 0, 0, image.width, image.height);
+		ctx = context;
+	});
+	return ctx;
+}
+
+/**
+ * A stretchable image that has borders.
+ * Similar to the [Android NinePatch]{@link https://developer.android.com/guide/topics/graphics/2d-graphics.html#nine-patch}, but it only has the lines on the bottom and right edges to denote the stretchable area.
+ * A NinePatch is a normal picture, but has an extra 1-pixel wide column on the right edge and bottom edge. The extra column contains a black line that denotes the tileable center portion of the image. The lines are used to divide the image into nine tiles that can be automatically repeated to stretch the picture to any size without distortion.
+ * @constructor
+ * @alias Splat.NinePatch
+ * @param {external:image} image The source image to make stretchable.
+ */
+function NinePatch(image) {
+	this.img = image;
+	var imgw = image.width - 1;
+	var imgh = image.height - 1;
+
+	var context = getContextForImage(image);
+	var firstDiv = imgw;
+	var secondDiv = imgw;
+	var pixel;
+	var alpha;
+	for (var x = 0; x &lt; imgw; x++) {
+		pixel = context.getImageData(x, imgh, 1, 1).data;
+		alpha = pixel[3];
+		if (firstDiv === imgw &amp;&amp; alpha > 0) {
+			firstDiv = x;
+		}
+		if (firstDiv &lt; imgw &amp;&amp; alpha === 0) {
+			secondDiv = x;
+			break;
+		}
+	}
+	this.w1 = firstDiv;
+	this.w2 = secondDiv - firstDiv;
+	this.w3 = imgw - secondDiv;
+
+	firstDiv = secondDiv = imgh;
+	for (var y = 0; y &lt; imgh; y++) {
+		pixel = context.getImageData(imgw, y, 1, 1).data;
+		alpha = pixel[3];
+		if (firstDiv === imgh &amp;&amp; alpha > 0) {
+			firstDiv = y;
+		}
+		if (firstDiv &lt; imgh &amp;&amp; alpha === 0) {
+			secondDiv = y;
+			break;
+		}
+	}
+	this.h1 = firstDiv;
+	this.h2 = secondDiv - firstDiv;
+	this.h3 = imgh - secondDiv;
+}
+/**
+ * Draw the image stretched to a given rectangle.
+ * @param {external:CanvasRenderingContext2D} context The drawing context.
+ * @param {number} x The left side of the rectangle.
+ * @param {number} y The top of the rectangle.
+ * @param {number} width The width of the rectangle.
+ * @param {number} height The height of the rectangle.
+ */
+NinePatch.prototype.draw = function(context, x, y, width, height) {
+	x = x|0;
+	y = y|0;
+	width = width |0;
+	height = height |0;
+	var cx, cy, w, h;
+
+	for (cy = y + this.h1; cy &lt; y + height - this.h3; cy += this.h2) {
+		for (cx = x + this.w1; cx &lt; x + width - this.w3; cx += this.w2) {
+			w = Math.min(this.w2, x + width - this.w3 - cx);
+			h = Math.min(this.h2, y + height - this.h3 - cy);
+			context.drawImage(this.img, this.w1, this.h1, w, h, cx, cy, w, h);
+		}
+	}
+	for (cy = y + this.h1; cy &lt; y + height - this.h3; cy += this.h2) {
+		h = Math.min(this.h2, y + height - this.h3 - cy);
+		if (this.w1 > 0) {
+			context.drawImage(this.img, 0,                 this.h1, this.w1, h, x,                   cy, this.w1, h);
+		}
+		if (this.w3 > 0) {
+			context.drawImage(this.img, this.w1 + this.w2, this.h1, this.w3, h, x + width - this.w3, cy, this.w3, h);
+		}
+	}
+	for (cx = x + this.w1; cx &lt; x + width - this.w3; cx += this.w2) {
+		w = Math.min(this.w2, x + width - this.w3 - cx);
+		if (this.h1 > 0) {
+			context.drawImage(this.img, this.w1, 0,                 w, this.h1, cx, y,                    w, this.h1);
+		}
+		if (this.h3 > 0) {
+			context.drawImage(this.img, this.w1, this.w1 + this.w2, w, this.h3, cx, y + height - this.h3, w, this.h3);
+		}
+	}
+	if (this.w1 > 0 &amp;&amp; this.h1 > 0) {
+		context.drawImage(this.img, 0, 0, this.w1, this.h1, x, y, this.w1, this.h1);
+	}
+	if (this.w3 > 0 &amp;&amp; this.h1 > 0) {
+		context.drawImage(this.img, this.w1 + this.w2, 0, this.w3, this.h1, x + width - this.w3, y, this.w3, this.h1);
+	}
+	if (this.w1 > 0 &amp;&amp; this.h3 > 0) {
+		context.drawImage(this.img, 0, this.h1 + this.h2, this.w1, this.h3, x, y + height - this.h3, this.w1, this.h3);
+	}
+	if (this.w3 > 0 &amp;&amp; this.h3 > 0) {
+		context.drawImage(this.img, this.w1 + this.w2, this.h1 + this.h2, this.w3, this.h3, x + width - this.w3, y + height - this.h3, this.w3, this.h3);
+	}
+};
+
+module.exports = NinePatch;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-AudioContext.html">AudioContext</a></li><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="FontLoader.html">FontLoader</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="SoundLoader.html">SoundLoader</a></li><li><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Splat.AStar.html">AStar</a></li><li><a href="Splat.BinaryHeap.html">BinaryHeap</a></li><li><a href="Splat.Camera.html">Camera</a></li><li><a href="Splat.Entity.html">Entity</a></li><li><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></li><li><a href="Splat.Game.html">Game</a></li><li><a href="Splat.NinePatch.html">NinePatch</a></li><li><a href="Splat.Scene.html">Scene</a></li><li><a href="Splat.Timer.html">Timer</a></li></ul><h3>Namespaces</h3><ul><li><a href="Splat.html">Splat</a></li><li><a href="Splat.math.html">math</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 26 2014 14:00:43 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

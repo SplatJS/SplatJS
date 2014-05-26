@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: buffer.js</title>
+    <title>JSDoc: Namespace: Splat</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,77 +17,128 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: buffer.js</h1>
+    <h1 class="page-title">Namespace: Splat</h1>
 
     
 
 
+
+<section>
+
+<header>
+    <h2>
+    Splat
+    </h2>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>"use strict";
-/** @module buffer */
+</header>
 
-/**
- * Make an invisible {@link canvas}.
- * @param {number} width The width of the canvas
- * @param {number} height The height of the canvas
- * @returns {external:canvas} A canvas DOM element
- * @private
- */
-function makeCanvas(width, height) {
-	var c = document.createElement("canvas");
-	c.width = width;
-	c.height = height;
-	return c;
-}
+<article>
+    <div class="container-overview">
+    
 
-/**
- * Make an invisible canvas buffer, and draw on it.
- * @param {number} width The width of the buffer
- * @param {number} height The height of the buffer
- * @param {drawCallback} drawFun The callback that draws on the buffer
- * @returns {external:canvas} The drawn buffer
- */
-function makeBuffer(width, height, drawFun) {
-	var canvas = makeCanvas(width, height);
-	var ctx = canvas.getContext("2d");
-	drawFun(ctx);
-	return canvas;
-}
+    
+        
 
-/**
- * Make a horizonally-flipped copy of a buffer or image.
- * @param {external:canvas|external:image} buffer The original image
- * @return {external:canvas} The flipped buffer
- */
-function flipBufferHorizontally(buffer) {
-	return makeBuffer(buffer.width, buffer.height, function(context) {
-		context.scale(-1, 1);
-		context.drawImage(buffer, -buffer.width, 0);
-	});
-}
+        
+<dl class="details">
+    
 
-/**
- * Make a vertically-flipped copy of a buffer or image.
- * @param {external:canvas|external:image} buffer The original image
- * @return {external:canvas} The flipped buffer
- */
-function flipBufferVertically(buffer) {
-	return makeBuffer(buffer.width, buffer.height, function(context) {
-		context.scale(1, -1);
-		context.drawImage(buffer, 0, -buffer.height);
-	});
-}
+    
 
-module.exports = {
-	makeBuffer: makeBuffer,
-	flipBufferHorizontally: flipBufferHorizontally,
-	flipBufferVertically: flipBufferVertically
-};
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.AStar.html">AStar</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.BinaryHeap.html">BinaryHeap</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.Camera.html">Camera</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.Entity.html">Entity</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.Game.html">Game</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.NinePatch.html">NinePatch</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.Scene.html">Scene</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Splat.Timer.html">Timer</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="namespaces.html#Splat.math"><a href="Splat.math.html">math</a></a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

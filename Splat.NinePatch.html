@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: buffer</title>
+    <title>JSDoc: Class: NinePatch</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: buffer</h1>
+    <h1 class="page-title">Class: NinePatch</h1>
 
     
 
@@ -27,7 +27,9 @@
 
 <header>
     <h2>
-    buffer
+        <span class="ancestors"><a href="Splat.html">Splat</a>.</span>
+    
+    NinePatch
     </h2>
     
 </header>
@@ -38,8 +40,76 @@
 
     
         
+<dt>
+    <h4 class="name" id="NinePatch"><span class="type-signature"></span>new NinePatch<span class="signature">(image)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        A stretchable image that has borders.
+Similar to the <a href="https://developer.android.com/guide/topics/graphics/2d-graphics.html#nine-patch">Android NinePatch</a>, but it only has the lines on the bottom and right edges to denote the stretchable area.
+A NinePatch is a normal picture, but has an extra 1-pixel wide column on the right edge and bottom edge. The extra column contains a black line that denotes the tileable center portion of the image. The lines are used to divide the image into nine tiles that can be automatically repeated to stretch the picture to any size without distortion.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
 
         
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>image</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="external-image.html">external:image</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The source image to make stretchable.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
 <dl class="details">
     
 
@@ -62,7 +132,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line2">line 2</a>
+        <a href="ninepatch.js.html">ninepatch.js</a>, <a href="ninepatch.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -74,7 +144,21 @@
 </dl>
 
 
-        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
     
     </div>
 
@@ -96,7 +180,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="flipBufferHorizontally"><span class="type-signature">&lt;inner> </span>flipBufferHorizontally<span class="signature">(buffer)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(context, x, y, width, height)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -104,7 +188,7 @@
 
     
     <div class="description">
-        Make a horizonally-flipped copy of a buffer or image.
+        Draw the image stretched to a given rectangle.
     </div>
     
 
@@ -138,16 +222,13 @@
 
         <tr>
             
-                <td class="name"><code>buffer</code></td>
+                <td class="name"><code>context</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-|
-
-<span class="param-type"><a href="external-image.html">external:image</a></span>
+<span class="param-type"><a href="external-CanvasRenderingContext2D.html">external:CanvasRenderingContext2D</a></span>
 
 
             
@@ -157,141 +238,20 @@
 
             
 
-            <td class="description last">The original image</td>
+            <td class="description last">The drawing context.</td>
         </tr>
 
-    
-    </tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line37">line 37</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    The flipped buffer
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="flipBufferVertically"><span class="type-signature">&lt;inner> </span>flipBufferVertically<span class="signature">(buffer)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Make a vertically-flipped copy of a buffer or image.
-    </div>
-    
-
-    
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>buffer</code></td>
+                <td class="name"><code>x</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-|
-
-<span class="param-type"><a href="external-image.html">external:image</a></span>
+<span class="param-type">number</span>
 
 
             
@@ -301,127 +261,32 @@
 
             
 
-            <td class="description last">The original image</td>
+            <td class="description last">The left side of the rectangle.</td>
         </tr>
 
     
-    </tbody>
-</table>
-    
 
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
+        <tr>
             
-<div class="param-desc">
-    The flipped buffer
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-    
-</dd>
-
-        
+                <td class="name"><code>y</code></td>
             
-<dt>
-    <h4 class="name" id="makeBuffer"><span class="type-signature">&lt;inner> </span>makeBuffer<span class="signature">(width, height, drawFun)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
 
-    
-</dt>
-<dd>
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-    
-    <div class="description">
-        Make an invisible canvas buffer, and draw on it.
-    </div>
-    
 
-    
+            
+            </td>
 
-    
+            
 
-    
-        <h5>Parameters:</h5>
-        
+            
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+            <td class="description last">The top of the rectangle.</td>
+        </tr>
 
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
@@ -442,7 +307,7 @@
 
             
 
-            <td class="description last">The width of the buffer</td>
+            <td class="description last">The width of the rectangle.</td>
         </tr>
 
     
@@ -465,30 +330,7 @@
 
             
 
-            <td class="description last">The height of the buffer</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>drawFun</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#drawCallback">drawCallback</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The callback that draws on the buffer</td>
+            <td class="description last">The height of the rectangle.</td>
         </tr>
 
     
@@ -519,7 +361,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line25">line 25</a>
+        <a href="ninepatch.js.html">ninepatch.js</a>, <a href="ninepatch.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -542,28 +384,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    The drawn buffer
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-
-
-    </dd>
-</dl>
-
-        
 
     
 </dd>

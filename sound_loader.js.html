@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: sound_loader.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: sound_loader.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+/**
+ * Loads sound files and lets you know when they're all available. An instance of SoundLoader is available as {@link Splat.Game#sounds}.
+ * This implementation uses the Web Audio API, and if that is not available it automatically falls back to the HTML5 &amp;lt;audio&amp;gt; tag.
+ * @constructor
+ */
+function SoundLoader() {
+	/**
+	 * The key-value object that stores named sounds.
+	 * @member {object}
+	 * @private
+	 */
+	this.sounds = {};
+	/**
+	 * The total number of sounds to be loaded.
+	 * @member {number}
+	 * @private
+	 */
+	this.totalSounds = 0;
+	/**
+	 * The number of sounds that have loaded completely.
+	 * @member {number}
+	 * @private
+	 */
+	this.loadedSounds = 0;
+	/**
+	 * A flag signifying if sounds are muted and should not be played.
+	 * This only stops new sounds from being played, and doesn't actually mute the volume.
+	 * Patches appreciated.
+	 * @member {boolean}
+	 */
+	this.muted = false;
+	/**
+	 * A key-value object that stores named looping sounds.
+	 * @member {object}
+	 * @private
+	 */
+	this.looping = {};
+
+	/**
+	 * The Web Audio API AudioContext
+	 * @member {external:AudioContext}
+	 * @private
+	 */
+	this.context = new window.AudioContext();
+}
+/**
+ * Load an audio file.
+ * @param {string} name The name you want to use when you {@link SoundLoader#play} the sound.
+ * @param {string} path The path of the sound file.
+ */
+SoundLoader.prototype.load = function(name, path) {
+	var self = this;
+
+	if (this.totalSounds === 0) {
+		// safari on iOS mutes sounds until they're played in response to user input
+		// play a dummy sound on first touch
+		var firstTouchHandler = function() {
+			window.removeEventListener("click", firstTouchHandler);
+			window.removeEventListener("keydown", firstTouchHandler);
+			window.removeEventListener("touchstart", firstTouchHandler);
+
+			var source = self.context.createOscillator();
+			source.connect(self.context.destination);
+			source.start(0);
+			source.stop(0);
+
+			if (self.firstPlay) {
+				self.play(self.firstPlay, self.firstPlayLoop);
+			} else {
+				self.firstPlay = "workaround";
+			}
+
+		};
+		window.addEventListener("click", firstTouchHandler);
+		window.addEventListener("keydown", firstTouchHandler);
+		window.addEventListener("touchstart", firstTouchHandler);
+	}
+
+	this.totalSounds++;
+
+	var request = new XMLHttpRequest();
+	request.open("GET", path, true);
+	request.responseType = "arraybuffer";
+	request.addEventListener("readystatechange", function() {
+		if (request.readyState !== 4) {
+			return;
+		}
+		if (request.status !== 200 &amp;&amp; request.status !== 0) {
+			console.error("Error loading sound " + path);
+			return;
+		}
+		self.context.decodeAudioData(request.response, function(buffer) {
+			self.sounds[name] = buffer;
+			self.loadedSounds++;
+		}, function(err) {
+			console.error("Error decoding audio data for " + path + ": " + err);
+		});
+	});
+	request.addEventListener("error", function() {
+		console.error("Error loading sound " + path);
+	});
+	try {
+		request.send();
+	} catch (e) {
+		console.error("Error loading sound", path, e);
+	}
+};
+/**
+ * Test if all sounds have loaded.
+ * @returns {boolean}
+ */
+SoundLoader.prototype.allLoaded = function() {
+	return this.totalSounds === this.loadedSounds;
+};
+/**
+ * Play a sound.
+ * @param {string} name The name given to the sound during {@link SoundLoader#load}
+ * @param {boolean} [loop=false] A flag denoting whether the sound should be looped. To stop a looped sound use {@link SoundLoader#stop}.
+ */
+SoundLoader.prototype.play = function(name, loop) {
+	if (loop &amp;&amp; this.looping[name]) {
+		return;
+	}
+	if (!this.firstPlay) {
+		// let the iOS user input workaround handle it
+		this.firstPlay = name;
+		this.firstPlayLoop = loop;
+		return;
+	}
+	if (this.muted) {
+		return;
+	}
+	var snd = this.sounds[name];
+	if (snd === undefined) {
+		console.error("Unknown sound: " + name);
+	}
+	var source = this.context.createBufferSource();
+	source.buffer = snd;
+	source.connect(this.context.destination);
+	if (loop) {
+		source.loop = true;
+		this.looping[name] = source;
+	}
+	source.start(0);
+};
+/**
+ * Stop playing a sound. This currently only stops playing a sound that was looped earlier, and doesn't stop a sound mid-play. Patches welcome.
+ * @param {string} name The name given to the sound during {@link SoundLoader#load}
+ */
+SoundLoader.prototype.stop = function(name) {
+	if (!this.looping[name]) {
+		return;
+	}
+	this.looping[name].stop();
+	delete this.looping[name];
+};
+
+function AudioTagSoundLoader() {
+	this.sounds = {};
+	this.totalSounds = 0;
+	this.loadedSounds = 0;
+	this.muted = false;
+	this.looping = {};
+}
+AudioTagSoundLoader.prototype.load = function(name, path) {
+	this.totalSounds++;
+
+	var audio = new Audio();
+	var self = this;
+	audio.addEventListener("error", function() {
+		console.error("Error loading sound " + path);
+	});
+	audio.addEventListener("canplaythrough", function() {
+		self.sounds[name] = audio;
+		self.loadedSounds++;
+	});
+	audio.src = path;
+	audio.load();
+};
+AudioTagSoundLoader.prototype.allLoaded = function() {
+	return this.totalSounds === this.loadedSounds;
+};
+AudioTagSoundLoader.prototype.play = function(name, loop) {
+	if (loop &amp;&amp; this.looping[name]) {
+		return;
+	}
+	if (this.muted) {
+		return;
+	}
+	var snd = this.sounds[name];
+	if (snd === undefined) {
+		console.error("Unknown sound: " + name);
+	}
+	if (loop) {
+		snd.loop = true;
+		this.looping[name] = snd;
+	}
+	snd.play();
+};
+AudioTagSoundLoader.prototype.stop = function(name) {
+	var snd = this.looping[name];
+	if (!snd) {
+		return;
+	}
+	snd.loop = false;
+	snd.pause();
+	snd.currentTime = 0;
+	delete this.looping[name];
+};
+
+function FakeSoundLoader() {}
+FakeSoundLoader.prototype.load = function() {};
+FakeSoundLoader.prototype.allLoaded = function() { return true; };
+FakeSoundLoader.prototype.play = function() {};
+
+if (window.AudioContext) {
+	module.exports = SoundLoader;
+} else if (window.Audio) {
+	module.exports = AudioTagSoundLoader;
+} else {
+	console.log("This browser doesn't support the Web Audio API or the HTML5 audio tag.");
+	module.exports = FakeSoundLoader;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-AudioContext.html">AudioContext</a></li><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="FontLoader.html">FontLoader</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="SoundLoader.html">SoundLoader</a></li><li><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Splat.AStar.html">AStar</a></li><li><a href="Splat.BinaryHeap.html">BinaryHeap</a></li><li><a href="Splat.Camera.html">Camera</a></li><li><a href="Splat.Entity.html">Entity</a></li><li><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></li><li><a href="Splat.Game.html">Game</a></li><li><a href="Splat.NinePatch.html">NinePatch</a></li><li><a href="Splat.Scene.html">Scene</a></li><li><a href="Splat.Timer.html">Timer</a></li></ul><h3>Namespaces</h3><ul><li><a href="Splat.html">Splat</a></li><li><a href="Splat.math.html">math</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 26 2014 14:00:43 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: buffer</title>
+    <title>JSDoc: Class: AStar</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: buffer</h1>
+    <h1 class="page-title">Class: AStar</h1>
 
     
 
@@ -27,7 +27,9 @@
 
 <header>
     <h2>
-    buffer
+        <span class="ancestors"><a href="Splat.html">Splat</a>.</span>
+    
+    AStar
     </h2>
     
 </header>
@@ -38,8 +40,74 @@
 
     
         
+<dt>
+    <h4 class="name" id="AStar"><span class="type-signature"></span>new AStar<span class="signature">(isWalkable)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Implements the <a href="http://en.wikipedia.org/wiki/A*_search_algorithm">A* pathfinding algorithm</a> on a 2-dimensional grid. You can use this to find a path between a source and destination coordinate while avoiding obstacles.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
 
         
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>isWalkable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#isWalkable">isWalkable</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A function to test if a coordinate is walkable by the entity you're performing the pathfinding for.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
 <dl class="details">
     
 
@@ -62,7 +130,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line2">line 2</a>
+        <a href="astar.js.html">astar.js</a>, <a href="astar.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -74,7 +142,21 @@
 </dl>
 
 
-        
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
     
     </div>
 
@@ -96,7 +178,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="flipBufferHorizontally"><span class="type-signature">&lt;inner> </span>flipBufferHorizontally<span class="signature">(buffer)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
+    <h4 class="name" id="heuristic"><span class="type-signature"></span>heuristic<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -104,7 +186,7 @@
 
     
     <div class="description">
-        Make a horizonally-flipped copy of a buffer or image.
+        The <a href="http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html">A* heuristic</a>, commonly referred to as h(x), that estimates how far a location is from the destination. This implementation is the <a href="http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#manhattan-distance">Manhattan method</a>, which is good for situations when the entity can travel in four directions. Feel free to replace this with a different heuristic implementation.
     </div>
     
 
@@ -138,295 +220,7 @@
 
         <tr>
             
-                <td class="name"><code>buffer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-|
-
-<span class="param-type"><a href="external-image.html">external:image</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The original image</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line37">line 37</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    The flipped buffer
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="flipBufferVertically"><span class="type-signature">&lt;inner> </span>flipBufferVertically<span class="signature">(buffer)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Make a vertically-flipped copy of a buffer or image.
-    </div>
-    
-
-    
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>buffer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-|
-
-<span class="param-type"><a href="external-image.html">external:image</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The original image</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    The flipped buffer
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="makeBuffer"><span class="type-signature">&lt;inner> </span>makeBuffer<span class="signature">(width, height, drawFun)</span><span class="type-signature"> &rarr; {<a href="external-canvas.html">external:canvas</a>}</span></h4>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Make an invisible canvas buffer, and draw on it.
-    </div>
-    
-
-    
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>width</code></td>
+                <td class="name"><code>x</code></td>
             
 
             <td class="type">
@@ -442,14 +236,14 @@
 
             
 
-            <td class="description last">The width of the buffer</td>
+            <td class="description last">The x coordinate to estimate the distance to the destination.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>height</code></td>
+                <td class="name"><code>y</code></td>
             
 
             <td class="type">
@@ -465,30 +259,7 @@
 
             
 
-            <td class="description last">The height of the buffer</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>drawFun</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#drawCallback">drawCallback</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The callback that draws on the buffer</td>
+            <td class="description last">The y coordinate to estimate the distance to the destination.</td>
         </tr>
 
     
@@ -519,7 +290,195 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buffer.js.html">buffer.js</a>, <a href="buffer.js.html#line25">line 25</a>
+        <a href="astar.js.html">astar.js</a>, <a href="astar.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="search"><span class="type-signature"></span>search<span class="signature">(srcX, srcY, destX, destY)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Search for an optimal path between srcX, srcY and destX, destY, while avoiding obstacles.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>srcX</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The starting x coordinate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>srcY</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The starting y coordinate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>destX</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The destination x coordinate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>destY</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The destination y coordinate</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="astar.js.html">astar.js</a>, <a href="astar.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -546,7 +505,7 @@
     
             
 <div class="param-desc">
-    The drawn buffer
+    The optimal path, in the form of an array of objects that each have an x and y property.
 </div>
 
 
@@ -557,7 +516,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="external-canvas.html">external:canvas</a></span>
+<span class="param-type">Array</span>
 
 
     </dd>

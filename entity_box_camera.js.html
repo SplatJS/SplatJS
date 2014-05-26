@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: entity_box_camera.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: entity_box_camera.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+var Camera = require("./camera");
+
+/**
+ * A {@link Splat.Camera} that tracks an {@link Splat.Entity} to keep it on screen within an invisible box. If the Entity moves outside of the invisible box, the camera is adjusted the minimal amount so that the Entity is back inside the box.
+ * @constructor
+ * @augments Splat.Entity
+ * @alias Splat.EntityBoxCamera
+ * @param {Splat.Entity} entity The Entity for the camera to track.
+ * @param {number} width The width of the invisible box to keep the {@link Splat.Entity} within.
+ * @param {number} height The height of the invisible box to keep the {@link Splat.Entity} within.
+ * @param {number} screenCenterX The center of the invisible box on the screen along the x axis.
+ * @param {number} screenCenterY The center of the invisible box on the screen along the y axis.
+ * @example
+var scene = new Splat.Scene(canvas, function() {
+	// initialization
+	this.player = new Splat.Entity(200, 200, 50, 50);
+	// make a camera that won't let the player closer than 100 pixels to the left and right sides, or 50 pixels from the top or bottom
+	this.camera = new Splat.EntityBoxCamera(this.player, canvas.width - 200, canvas.height - 100, canvas.width / 2, canvas.height / 2);
+}, function(elapsedMillis) {
+	// simulation
+}, function(context) {
+	// draw
+});
+ */
+function EntityBoxCamera(entity, width, height, screenCenterX, screenCenterY) {
+	/**
+	 * The {@link Splat.Entity} for the camera to track.
+	 * @member {Splat.Entity}
+	 */
+	this.entity = entity;
+	/**
+	 */
+	/**
+	 * The center of the invisible box on the screen along the x axis.
+	 * @member {number}
+	 */
+	this.screenCenterX = screenCenterX;
+	/**
+	 * The center of the invisible box on the screen along the y axis.
+	 * @member {number}
+	 */
+	this.screenCenterY = screenCenterY;
+
+	var x = keepPositionInBox(entity.x, entity.width, 0, width, screenCenterX);
+	var y = keepPositionInBox(entity.y, entity.height, 0, height, screenCenterY);
+	Camera.call(this, x, y, width, height);
+}
+EntityBoxCamera.prototype = Object.create(Camera.prototype);
+/**
+ * Adjust the camera so that it keeps {@link Splat.EntityBoxCamera#entity} within the invisible box. This is usually automatically called by the {@link Splat.Scene} for you.
+ */
+EntityBoxCamera.prototype.move = function() {
+	this.x = keepPositionInBox(this.entity.x, this.entity.width, this.x, this.width, this.screenCenterX);
+	this.y = keepPositionInBox(this.entity.y, this.entity.height, this.y, this.height, this.screenCenterY);
+};
+
+function keepPositionInBox(entityPos, entitySize, thisPos, thisSize, offset) {
+	var boundsFromCenter = thisSize / 2;
+	if (entityPos &lt; thisPos + offset - boundsFromCenter) {
+		thisPos = entityPos - offset + boundsFromCenter;
+	}
+	if (entityPos + entitySize > thisPos + offset + boundsFromCenter) {
+		thisPos = entityPos + entitySize - offset - boundsFromCenter;
+	}
+	return thisPos;
+}
+
+module.exports = EntityBoxCamera;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-AudioContext.html">AudioContext</a></li><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="FontLoader.html">FontLoader</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="SoundLoader.html">SoundLoader</a></li><li><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Splat.AStar.html">AStar</a></li><li><a href="Splat.BinaryHeap.html">BinaryHeap</a></li><li><a href="Splat.Camera.html">Camera</a></li><li><a href="Splat.Entity.html">Entity</a></li><li><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></li><li><a href="Splat.Game.html">Game</a></li><li><a href="Splat.NinePatch.html">NinePatch</a></li><li><a href="Splat.Scene.html">Scene</a></li><li><a href="Splat.Timer.html">Timer</a></li></ul><h3>Namespaces</h3><ul><li><a href="Splat.html">Splat</a></li><li><a href="Splat.math.html">math</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 26 2014 14:00:43 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

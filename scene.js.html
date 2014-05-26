@@ -32,8 +32,9 @@ var Camera = require("./camera");
 /**
  * A Scene handles the render loop for the game.
  * @constructor
+ * @alias Splat.Scene
  * @param {external:canvas} canvas The canvas to render on.
- * @param {emptyCallback} initFunc A callback to be called every time the Scene is {@link Scene#start started}.
+ * @param {emptyCallback} initFunc A callback to be called every time the Scene is {@link Splat.Scene#start started}.
  * @param {simulationCallback} simulationFunc A callback that updates the state of the game's simulation.
  * @param {drawCallback} drawFunc A callback that draws the game.
  */
@@ -45,7 +46,7 @@ function Scene(canvas, initFunc, simulationFunc, drawFunc) {
 	 */
 	this.canvas = canvas;
 	/**
-	 * A callback to be called ever time the Scene is {@link Scene#start started}.
+	 * A callback to be called ever time the Scene is {@link Splat.Scene#start started}.
 	 * @member {emptyCallback}
 	 * @private
 	 */
@@ -82,15 +83,15 @@ function Scene(canvas, initFunc, simulationFunc, drawFunc) {
 	 */
 	this.running = false;
 	/**
-	 * A key-value store of named timers. Timers in this object will be automatically {@link Timer#tick ticked} for you when the scene is running.
+	 * A key-value store of named timers. Timers in this object will be automatically {@link Splat.Timer#tick tick()}ed for you when the scene is running..
 	 * @member {object}
 	 */
 	this.timers = {};
 
 	/**
 	 * The Camera used to offset the Scene's drawing.
-	 * This Camera's {@link Entity#move move} and {@link Camera#draw draw} methods are called automatically for you. The default Camera starts at the origin (0,0).
-	 * @member {Camera}
+	 * This Camera's {@link Splat.Entity#move move} and {@link Splat.Camera#draw draw} methods are called automatically for you. The default Camera starts at the origin (0,0).
+	 * @member {Splat.Camera}
 	 */
 	this.camera = new Camera(0, 0, canvas.width, canvas.height);
 	/**
@@ -116,7 +117,7 @@ Scene.prototype.stop = function() {
 	this.running = false;
 };
 /**
- * Reset the simulation by re-running the {@link Scene#initFunc}.
+ * Reset the simulation by re-running the {@link Splat.Scene#initFunc}.
  */
 Scene.prototype.reset = function() {
 	this.initFunc.call(this);
@@ -191,13 +192,13 @@ module.exports = Scene;
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="BinaryHeap.html">BinaryHeap</a></li><li><a href="Camera.html">Camera</a></li><li><a href="Entity.html">Entity</a></li><li><a href="Game.html">Game</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="Scene.html">Scene</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Timer.html">Timer</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-AudioContext.html">AudioContext</a></li><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="FontLoader.html">FontLoader</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="SoundLoader.html">SoundLoader</a></li><li><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Splat.AStar.html">AStar</a></li><li><a href="Splat.BinaryHeap.html">BinaryHeap</a></li><li><a href="Splat.Camera.html">Camera</a></li><li><a href="Splat.Entity.html">Entity</a></li><li><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></li><li><a href="Splat.Game.html">Game</a></li><li><a href="Splat.NinePatch.html">NinePatch</a></li><li><a href="Splat.Scene.html">Scene</a></li><li><a href="Splat.Timer.html">Timer</a></li></ul><h3>Namespaces</h3><ul><li><a href="Splat.html">Splat</a></li><li><a href="Splat.math.html">math</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 12 2014 23:10:00 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 26 2014 14:00:43 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

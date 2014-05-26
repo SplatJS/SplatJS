@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Entity</title>
+    <title>JSDoc: Class: Camera</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Entity</h1>
+    <h1 class="page-title">Class: Camera</h1>
 
     
 
@@ -27,7 +27,9 @@
 
 <header>
     <h2>
-    Entity
+        <span class="ancestors"><a href="Splat.html">Splat</a>.</span>
+    
+    Camera
     </h2>
     
 </header>
@@ -39,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="Entity"><span class="type-signature"></span>new Entity<span class="signature">(x, y, width, height)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Camera"><span class="type-signature"></span>new Camera<span class="signature">(x, y, width, height)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -47,9 +49,10 @@
 
     
     <div class="description">
-        The base in-game object, it supports a location and velocity.
-Entities are boxes, consisting of an x,y coordinate along with a width and height.
-Entities can have basic collision detection, and can resolve collisions in a basic way.
+        A basic camera. It's really an <a href="Splat.Entity.html">Splat.Entity</a>, so you can control it in the same way.
+By changing <a href="Splat.Entity.html#x">Splat.Entity#x</a> and <a href="Splat.Entity.html#y">Splat.Entity#y</a> you control what portion of the canvas is viewable.
+For example, if the Camera is at 50,50, and you draw a rectangle at 200,200,
+it will appear on the screen at 150,150.
     </div>
     
 
@@ -145,7 +148,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 
             
 
-            <td class="description last">The width on the x-axis</td>
+            <td class="description last">The width on the x-axis. Currently doesn't do anything.</td>
         </tr>
 
     
@@ -168,7 +171,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 
             
 
-            <td class="description last">The height on the y-axis</td>
+            <td class="description last">The height on the y-axis. Currently doesn't do anything.</td>
         </tr>
 
     
@@ -199,7 +202,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line13">line 13</a>
+        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -230,6 +233,12 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        <ul>
+            <li><a href="Splat.Entity.html">Splat.Entity</a></li>
+        </ul>
+    
 
     
 
@@ -252,7 +261,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 <dd>
     
     <div class="description">
-        Height of the Entity, extending downward from <a href="Entity.html#y">Entity#y</a>.
+        Height of the Entity, extending downward from <a href="Splat.Entity.html#y">Splat.Entity#y</a>.
     </div>
     
 
@@ -277,6 +286,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#height">Splat.Entity#height</a>
+    </li></dd>
+    
 
     
 
@@ -291,7 +305,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line33">line 33</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -318,7 +332,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 <dd>
     
     <div class="description">
-        The value of <a href="Entity.html#x">Entity#x</a> in the last frame.
+        The value of <a href="Splat.Entity.html#x">Splat.Entity#x</a> in the previous frame.
     </div>
     
 
@@ -343,6 +357,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#lastX">Splat.Entity#lastX</a>
+    </li></dd>
+    
 
     
 
@@ -357,7 +376,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line49">line 49</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -384,7 +403,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 <dd>
     
     <div class="description">
-        The value of <a href="Entity.html#y">Entity#y</a> in the last frame.
+        The value of <a href="Splat.Entity.html#y">Splat.Entity#y</a> in the previous frame.
     </div>
     
 
@@ -409,6 +428,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#lastY">Splat.Entity#lastY</a>
+    </li></dd>
+    
 
     
 
@@ -423,7 +447,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line55">line 55</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -475,6 +499,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#vx">Splat.Entity#vx</a>
+    </li></dd>
+    
 
     
 
@@ -489,7 +518,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line38">line 38</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -541,6 +570,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#vy">Splat.Entity#vy</a>
+    </li></dd>
+    
 
     
 
@@ -555,7 +589,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line43">line 43</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -582,7 +616,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 <dd>
     
     <div class="description">
-        Width of the Entity, extending to the right of <a href="Entity.html#x">Entity#x</a>.
+        Width of the Entity, extending to the right of <a href="Splat.Entity.html#x">Splat.Entity#x</a>.
     </div>
     
 
@@ -607,6 +641,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#width">Splat.Entity#width</a>
+    </li></dd>
+    
 
     
 
@@ -621,7 +660,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line28">line 28</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -673,6 +712,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#x">Splat.Entity#x</a>
+    </li></dd>
+    
 
     
 
@@ -687,7 +731,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line18">line 18</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -739,6 +783,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#y">Splat.Entity#y</a>
+    </li></dd>
+    
 
     
 
@@ -753,7 +802,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line23">line 23</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -827,7 +876,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -854,6 +903,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#collides">Splat.Entity#collides</a>
+    </li></dd>
+    
 
     
 
@@ -868,7 +922,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line102">line 102</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line103">line 103</a>
     </li></ul></dd>
     
 
@@ -964,7 +1018,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -991,6 +1045,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#didOverlapHoriz">Splat.Entity#didOverlapHoriz</a>
+    </li></dd>
+    
 
     
 
@@ -1005,7 +1064,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line111">line 111</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -1101,7 +1160,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -1128,6 +1187,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#didOverlapVert">Splat.Entity#didOverlapVert</a>
+    </li></dd>
+    
 
     
 
@@ -1142,7 +1206,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line119">line 119</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
@@ -1190,6 +1254,270 @@ Entities can have basic collision detection, and can resolve collisions in a bas
         
             
 <dt>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw<span class="signature">(context)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Offset all following draw operations on the canvas.
+This is automatically called for you by <a href="Splat.Scene.html">Splat.Scene</a>.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">external:CanvasRendingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The context to offset</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="drawAbsolute"><span class="type-signature"></span>drawAbsolute<span class="signature">(context, drawFunc)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Draw on the canvas at not-offset coordinates.
+For example, if the camera is at 50,50 and you draw a rectangle at 200,200
+it will appear on the screen at 200,200.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">external:CanvasRendingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The context to offset</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>drawFunc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#drawCallback">drawCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback the performs the non-offset drawing.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="camera.js.html">camera.js</a>, <a href="camera.js.html#line37">line 37</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
     <h4 class="name" id="move"><span class="type-signature"></span>move<span class="signature">(elapsedMillis)</span><span class="type-signature"></span></h4>
 
     
@@ -1198,7 +1526,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 
     
     <div class="description">
-        Simulate movement since the last frame, changing <a href="Entity.html#x">Entity#x</a> and <a href="Entity.html#y">Entity#y</a> as necessary.
+        Simulate movement since the previous frame, changing <a href="Splat.Entity.html#x">Splat.Entity#x</a> and <a href="Splat.Entity.html#y">Splat.Entity#y</a> as necessary.
     </div>
     
 
@@ -1248,7 +1576,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 
             
 
-            <td class="description last">The number of milliseconds since the last frame.</td>
+            <td class="description last">The number of milliseconds since the previous frame.</td>
         </tr>
 
     
@@ -1265,6 +1593,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#move">Splat.Entity#move</a>
+    </li></dd>
+    
 
     
 
@@ -1279,7 +1612,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line73">line 73</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -1317,7 +1650,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 
     
     <div class="description">
-        Test if this Entity has changed position since the last frame.
+        Test if this Entity has changed position since the previous frame.
     </div>
     
 
@@ -1336,6 +1669,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#moved">Splat.Entity#moved</a>
+    </li></dd>
+    
 
     
 
@@ -1350,7 +1688,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line160">line 160</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -1446,7 +1784,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -1473,6 +1811,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#overlapsHoriz">Splat.Entity#overlapsHoriz</a>
+    </li></dd>
+    
 
     
 
@@ -1487,7 +1830,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line86">line 86</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line87">line 87</a>
     </li></ul></dd>
     
 
@@ -1583,7 +1926,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -1610,6 +1953,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#overlapsVert">Splat.Entity#overlapsVert</a>
+    </li></dd>
+    
 
     
 
@@ -1624,7 +1972,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line94">line 94</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -1681,7 +2029,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <div class="description">
         Adjust the Entity's position so its bottom edge does not penetrate the other Entity's top edge.
-<a href="Entity.html#vy">Entity#vy</a> is also zeroed.
+<a href="Splat.Entity.html#vy">Splat.Entity#vy</a> is also zeroed.
     </div>
     
 
@@ -1721,7 +2069,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -1748,6 +2096,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#resolveBottomCollisionWith">Splat.Entity#resolveBottomCollisionWith</a>
+    </li></dd>
+    
 
     
 
@@ -1762,7 +2115,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line179">line 179</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line180">line 180</a>
     </li></ul></dd>
     
 
@@ -1801,7 +2154,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <div class="description">
         Adjust the Entity's position so it does not penetrate the other Entity.
-<a href="Entity.html#vx">Entity#vx</a> will be zeroed if <a href="Entity.html#x">Entity#x</a> was adjusted, and <a href="Entity.html#vy">Entity#vy</a> will be zeroed if <a href="Entity.html#y">Entity#y</a> was adjusted.
+<a href="Splat.Entity.html#vx">Splat.Entity#vx</a> will be zeroed if <a href="Splat.Entity.html#x">Splat.Entity#x</a> was adjusted, and <a href="Splat.Entity.html#vy">Splat.Entity#vy</a> will be zeroed if <a href="Splat.Entity.html#y">Splat.Entity#y</a> was adjusted.
     </div>
     
 
@@ -1841,7 +2194,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -1868,6 +2221,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#resolveCollisionWith">Splat.Entity#resolveCollisionWith</a>
+    </li></dd>
+    
 
     
 
@@ -1882,7 +2240,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line223">line 223</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -1921,7 +2279,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <div class="description">
         Adjust the Entity's position so its left edge does not penetrate the other Entity's right edge.
-<a href="Entity.html#vx">Entity#vx</a> is also zeroed.
+<a href="Splat.Entity.html#vx">Splat.Entity#vx</a> is also zeroed.
     </div>
     
 
@@ -1961,7 +2319,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -1988,6 +2346,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#resolveLeftCollisionWith">Splat.Entity#resolveLeftCollisionWith</a>
+    </li></dd>
+    
 
     
 
@@ -2002,7 +2365,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line212">line 212</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line213">line 213</a>
     </li></ul></dd>
     
 
@@ -2041,7 +2404,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <div class="description">
         Adjust the Entity's position so its right edge does not penetrate the other Entity's left edge.
-<a href="Entity.html#vx">Entity#vx</a> is also zeroed.
+<a href="Splat.Entity.html#vx">Splat.Entity#vx</a> is also zeroed.
     </div>
     
 
@@ -2081,7 +2444,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -2108,6 +2471,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#resolveRightCollisionWith">Splat.Entity#resolveRightCollisionWith</a>
+    </li></dd>
+    
 
     
 
@@ -2122,7 +2490,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line201">line 201</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line202">line 202</a>
     </li></ul></dd>
     
 
@@ -2161,7 +2529,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <div class="description">
         Adjust the Entity's position so its top edge does not penetrate the other Entity's bottom edge.
-<a href="Entity.html#vy">Entity#vy</a> is also zeroed.
+<a href="Splat.Entity.html#vy">Splat.Entity#vy</a> is also zeroed.
     </div>
     
 
@@ -2201,7 +2569,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -2228,6 +2596,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#resolveTopCollisionWith">Splat.Entity#resolveTopCollisionWith</a>
+    </li></dd>
+    
 
     
 
@@ -2242,7 +2615,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line190">line 190</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -2320,7 +2693,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -2347,6 +2720,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#wasAbove">Splat.Entity#wasAbove</a>
+    </li></dd>
+    
 
     
 
@@ -2361,7 +2739,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line128">line 128</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -2457,7 +2835,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -2484,6 +2862,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#wasBelow">Splat.Entity#wasBelow</a>
+    </li></dd>
+    
 
     
 
@@ -2498,7 +2881,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line136">line 136</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line137">line 137</a>
     </li></ul></dd>
     
 
@@ -2594,7 +2977,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -2621,6 +3004,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#wasLeft">Splat.Entity#wasLeft</a>
+    </li></dd>
+    
 
     
 
@@ -2635,7 +3023,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line144">line 144</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line145">line 145</a>
     </li></ul></dd>
     
 
@@ -2731,7 +3119,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
             <td class="type">
             
                 
-<span class="param-type"><a href="Entity.html">Entity</a></span>
+<span class="param-type"><a href="Splat.Entity.html">Splat.Entity</a></span>
 
 
             
@@ -2758,6 +3146,11 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Splat.Entity.html#wasRight">Splat.Entity#wasRight</a>
+    </li></dd>
+    
 
     
 
@@ -2772,7 +3165,7 @@ Entities can have basic collision detection, and can resolve collisions in a bas
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line152">line 152</a>
+        <a href="entity.js.html">entity.js</a>, <a href="entity.js.html#line153">line 153</a>
     </li></ul></dd>
     
 
@@ -2833,13 +3226,13 @@ Entities can have basic collision detection, and can resolve collisions in a bas
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="BinaryHeap.html">BinaryHeap</a></li><li><a href="Camera.html">Camera</a></li><li><a href="Entity.html">Entity</a></li><li><a href="Game.html">Game</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="Scene.html">Scene</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Timer.html">Timer</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-AudioContext.html">AudioContext</a></li><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="FontLoader.html">FontLoader</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="SoundLoader.html">SoundLoader</a></li><li><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Splat.AStar.html">AStar</a></li><li><a href="Splat.BinaryHeap.html">BinaryHeap</a></li><li><a href="Splat.Camera.html">Camera</a></li><li><a href="Splat.Entity.html">Entity</a></li><li><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></li><li><a href="Splat.Game.html">Game</a></li><li><a href="Splat.NinePatch.html">NinePatch</a></li><li><a href="Splat.Scene.html">Scene</a></li><li><a href="Splat.Timer.html">Timer</a></li></ul><h3>Namespaces</h3><ul><li><a href="Splat.html">Splat</a></li><li><a href="Splat.math.html">math</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 12 2014 23:10:00 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 26 2014 14:00:43 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>

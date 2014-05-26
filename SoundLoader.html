@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: SceneManager</title>
+    <title>JSDoc: Class: SoundLoader</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: SceneManager</h1>
+    <h1 class="page-title">Class: SoundLoader</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    SceneManager
+    SoundLoader
     </h2>
     
 </header>
@@ -39,7 +39,7 @@
     
         
 <dt>
-    <h4 class="name" id="SceneManager"><span class="type-signature"></span>new SceneManager<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="SoundLoader"><span class="type-signature"></span>new SoundLoader<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -47,7 +47,8 @@
 
     
     <div class="description">
-        Provides a way to switch between <a href="Splat.Scene.html">Splat.Scene</a>s. An instance of SceneManager is available as <a href="Splat.Game.html#scenes">Splat.Game#scenes</a>.
+        Loads sound files and lets you know when they're all available. An instance of SoundLoader is available as <a href="Splat.Game.html#sounds">Splat.Game#sounds</a>.
+This implementation uses the Web Audio API, and if that is not available it automatically falls back to the HTML5 &lt;audio&gt; tag.
     </div>
     
 
@@ -80,7 +81,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scene_manager.js.html">scene_manager.js</a>, <a href="scene_manager.js.html#line7">line 7</a>
+        <a href="sound_loader.js.html">sound_loader.js</a>, <a href="sound_loader.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -120,6 +121,78 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="muted"><span class="type-signature"></span>muted<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        A flag signifying if sounds are muted and should not be played.
+This only stops new sounds from being played, and doesn't actually mute the volume.
+Patches appreciated.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sound_loader.js.html">sound_loader.js</a>, <a href="sound_loader.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -128,7 +201,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="add"><span class="type-signature"></span>add<span class="signature">(name, scene)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="allLoaded"><span class="type-signature"></span>allLoaded<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 </dt>
@@ -136,7 +209,7 @@
 
     
     <div class="description">
-        Begin tracking a <a href="Splat.Scene.html">Splat.Scene</a>.
+        Test if all sounds have loaded.
     </div>
     
 
@@ -144,77 +217,6 @@
 
     
 
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name of the <a href="Splat.Scene.html">Splat.Scene</a> to be used later when you call <a href="SceneManager.html#switchTo">SceneManager#switchTo</a>.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>scene</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Splat.Scene.html">Splat.Scene</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The Scene to track.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
     
 
     
@@ -240,126 +242,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scene_manager.js.html">scene_manager.js</a>, <a href="scene_manager.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(name)</span><span class="type-signature"> &rarr; {<a href="Splat.Scene.html">Splat.Scene</a>}</span></h4>
-
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Fetch a <a href="Splat.Scene.html">Splat.Scene</a> that was previously stored with <a href="SceneManager.html#add">SceneManager#add</a>.
-    </div>
-    
-
-    
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name that was provided when the <a href="Splat.Scene.html">Splat.Scene</a> was stored during <a href="SceneManager.html#add">SceneManager#add</a>.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scene_manager.js.html">scene_manager.js</a>, <a href="scene_manager.js.html#line28">line 28</a>
+        <a href="sound_loader.js.html">sound_loader.js</a>, <a href="sound_loader.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -393,7 +276,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Splat.Scene.html">Splat.Scene</a></span>
+<span class="param-type">boolean</span>
 
 
     </dd>
@@ -407,7 +290,7 @@
         
             
 <dt>
-    <h4 class="name" id="switchTo"><span class="type-signature"></span>switchTo<span class="signature">(name)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="load"><span class="type-signature"></span>load<span class="signature">(name, path)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -415,7 +298,7 @@
 
     
     <div class="description">
-        Stop running the current <a href="Splat.Scene.html">Splat.Scene</a>, and start running the named Scene.
+        Load an audio file.
     </div>
     
 
@@ -465,7 +348,30 @@
 
             
 
-            <td class="description last">The name that was providded when the <a href="Splat.Scene.html">Splat.Scene</a> was stored during <a href="SceneManager.html#add">SceneManager#add</a>.</td>
+            <td class="description last">The name you want to use when you <a href="SoundLoader.html#play">SoundLoader#play</a> the sound.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The path of the sound file.</td>
         </tr>
 
     
@@ -496,7 +402,300 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scene_manager.js.html">scene_manager.js</a>, <a href="scene_manager.js.html#line35">line 35</a>
+        <a href="sound_loader.js.html">sound_loader.js</a>, <a href="sound_loader.js.html#line55">line 55</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="play"><span class="type-signature"></span>play<span class="signature">(name, <span class="optional">loop</span>)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Play a sound.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The name given to the sound during <a href="SoundLoader.html#load">SoundLoader#load</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>loop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">A flag denoting whether the sound should be looped. To stop a looped sound use <a href="SoundLoader.html#stop">SoundLoader#stop</a>.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sound_loader.js.html">sound_loader.js</a>, <a href="sound_loader.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="stop"><span class="type-signature"></span>stop<span class="signature">(name)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Stop playing a sound. This currently only stops playing a sound that was looped earlier, and doesn't stop a sound mid-play. Patches welcome.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The name given to the sound during <a href="SoundLoader.html#load">SoundLoader#load</a></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sound_loader.js.html">sound_loader.js</a>, <a href="sound_loader.js.html#line154">line 154</a>
     </li></ul></dd>
     
 

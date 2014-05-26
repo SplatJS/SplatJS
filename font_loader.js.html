@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: font_loader.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: font_loader.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+require("../vendor/FontLoader.js");
+
+function buildFontFaceRule(family, urls) {
+	var eot = urls["embedded-opentype"];
+	var woff = urls.woff;
+	var ttf = urls.truetype;
+	var svg = urls.svg;
+
+	var css = "\n";
+	css += "@font-face {\n";
+	css += "  font-family: '" + family + "';\n";
+	css += "  src: url('" + eot + "');\n";
+	css += "  src: url('" + eot + "?iefix') format('embedded-opentype'),\n";
+	css += "       url('" + woff + "') format('woff'),\n";
+	css += "       url('" + ttf + "') format('ttf'),\n";
+	css += "       url('" + svg + "') format('svg');\n";
+	css += "}\n";
+	return css;
+}
+
+function createCssFontFaces(fontFamilies) {
+	var style = document.createElement("style");
+	style.setAttribute("type", "text/css");
+	var css = "";
+	for (var family in fontFamilies) {
+		if (fontFamilies.hasOwnProperty(family)) {
+			css += buildFontFaceRule(family, fontFamilies[family]);
+		}
+	}
+	style.appendChild(document.createTextNode(css));
+	document.head.appendChild(style);
+}
+
+/**
+ * Load fonts and lets you know when they're all available. An instance of FontLoader is available as {@link Splat.Game#fonts}.
+ * @constructor
+ */
+function FontLoader() {
+	/**
+	 * The total number of fonts to be loaded.
+	 * @member {number}
+	 * @private
+	 */
+	this.totalFonts = 0;
+	/**
+	 * The number of fonts that have loaded completely.
+	 * @member {number}
+	 * @private
+	 */
+	this.loadedFonts = 0;
+}
+/**
+ * Load a font.
+ * @param {object} fontFamilies A key-value object that maps css font-family names to another object that holds paths to the various font files in different formats.
+ * @example
+game.fonts.load({
+	"pixelade": {
+		"embedded-opentype": "pixelade/pixelade-webfont.eot",
+		"woff": "pixelade/pixelade-webfont.woff",
+		"truetype": "pixelade/pixelade-webfont.ttf",
+		"svg": "pixelade/pixelade-webfont.svg#pixeladeregular"
+	}
+});
+ */
+FontLoader.prototype.load = function(fontFamilies) {
+	createCssFontFaces(fontFamilies);
+
+	var families = [];
+	for (var family in fontFamilies) {
+		if (families.hasOwnProperty(family)) {
+			families.push(family);
+		}
+	}
+	this.totalFonts += families.length;
+
+	var self = this;
+	var loader = new window.FontLoader(families, {
+		"fontLoaded": function() {
+			self.loadedFonts++;
+		}
+	});
+	loader.loadFonts();
+};
+/**
+ * Test if all font fonts have loaded.
+ * @returns {boolean}
+ */
+FontLoader.prototype.allLoaded = function() {
+	return this.totalFonts === this.loadedFonts;
+};
+
+/**
+ * An alternate {@link FontLoader} when the game is running inside [Ejecta]{@link http://impactjs.com/ejecta}. You shouldn't need to worry about this.
+ * @constructor
+ * @private
+ */
+function EjectaFontLoader() {
+	this.totalFonts = 0;
+	this.loadedFonts = 0;
+}
+/**
+ * See {@link FontLoader#load}.
+ */
+EjectaFontLoader.prototype.load = function(fontFamilies) {
+	for (var family in fontFamilies) {
+		if (fontFamilies.hasOwnProperty(family)) {
+			var fontPath = fontFamilies[family].truetype;
+			if (fontPath) {
+				window.ejecta.loadFont(fontPath);
+			}
+		}
+	}
+};
+/**
+ * See {@link FontLoader#allLoaded}.
+ */
+EjectaFontLoader.prototype.allLoaded = function() {
+	return true;
+};
+
+if (window.ejecta) {
+	module.exports = EjectaFontLoader;
+} else {
+	module.exports = FontLoader;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-AudioContext.html">AudioContext</a></li><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="FontLoader.html">FontLoader</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="SoundLoader.html">SoundLoader</a></li><li><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Splat.AStar.html">AStar</a></li><li><a href="Splat.BinaryHeap.html">BinaryHeap</a></li><li><a href="Splat.Camera.html">Camera</a></li><li><a href="Splat.Entity.html">Entity</a></li><li><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></li><li><a href="Splat.Game.html">Game</a></li><li><a href="Splat.NinePatch.html">NinePatch</a></li><li><a href="Splat.Scene.html">Scene</a></li><li><a href="Splat.Timer.html">Timer</a></li></ul><h3>Namespaces</h3><ul><li><a href="Splat.html">Splat</a></li><li><a href="Splat.math.html">math</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 26 2014 14:00:43 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -30,15 +30,17 @@
 var Entity = require("./entity");
 
 /**
- * An upgraded {@link Entity} that knows how to draw and advance an {@link Animation}.
+ * An upgraded {@link Splat.Entity} that knows how to draw and advance an {@link Animation}.
  * @constructor
- * @param {number} x The top-left x coordinate. See {@link Entity#x}
- * @param {number} y The top-left y coordinate. See {@link Entity#y}
- * @param {number} width The width on the x-axis. See {@link Entity#width}
- * @param {number} height The height on the y-axis. See {@link Entity#height}
+ * @augments Splat.Entity
+ * @alias Splat.AnimatedEntity
+ * @param {number} x The top-left x coordinate. See {@link Splat.Entity#x}
+ * @param {number} y The top-left y coordinate. See {@link Splat.Entity#y}
+ * @param {number} width The width on the x-axis. See {@link Splat.Entity#width}
+ * @param {number} height The height on the y-axis. See {@link Splat.Entity#height}
  * @param {Animation|external:image} sprite The Animation or image to draw
- * @param {number} spriteOffsetX How much to offset {@link AnimatedEntity#sprite} from the {@link Entity#x} when drawing
- * @param {number} spriteOffsetY How much to offset {@link AnimatedEntity#sprite} from the {@link Entity#y} when drawing
+ * @param {number} spriteOffsetX How much to offset {@link Splat.AnimatedEntity#sprite} from the {@link Splat.Entity#x} when drawing
+ * @param {number} spriteOffsetY How much to offset {@link Splat.AnimatedEntity#sprite} from the {@link Splat.Entity#y} when drawing
  */
 function AnimatedEntity(x, y, width, height, sprite, spriteOffsetX, spriteOffsetY) {
 	/**
@@ -47,12 +49,12 @@ function AnimatedEntity(x, y, width, height, sprite, spriteOffsetX, spriteOffset
 	 */
 	this.sprite = sprite;
 	/**
-	 * How much to offset {@link AnimatedEntity#sprite} from {@link Entity#x} when drawing.
+	 * How much to offset {@link Splat.AnimatedEntity#sprite} from {@link Splat.Entity#x} when drawing.
 	 * @member {number}
 	 */
 	this.spriteOffsetX = spriteOffsetX;
 	/**
-	 * How much to offset {@link AnimatedEntity#sprite} from {@link Entity#y} when drawing.
+	 * How much to offset {@link Splat.AnimatedEntity#sprite} from {@link Splat.Entity#y} when drawing.
 	 * @member {number}
 	 */
 	this.spriteOffsetY = spriteOffsetY;
@@ -60,7 +62,7 @@ function AnimatedEntity(x, y, width, height, sprite, spriteOffsetX, spriteOffset
 }
 AnimatedEntity.prototype = Object.create(Entity.prototype);
 /**
- * Simulate movement since the last frame, changing {@link Entity#x}, {@link Entity#y}, and calling {@link Animation#move} if applicable.
+ * Simulate movement since the last frame, changing {@link Splat.Entity#x}, {@link Splat.Entity#y}, and calling {@link Animation#move} if applicable.
  * @param {number} elapsedMillis The number of milliseconds since the last frame.
  */
 AnimatedEntity.prototype.move = function(elapsedMillis) {
@@ -70,7 +72,7 @@ AnimatedEntity.prototype.move = function(elapsedMillis) {
 	}
 };
 /**
- * Draw the {@link AnimatedEntity#sprite}.
+ * Draw the {@link Splat.AnimatedEntity#sprite}.
  * @param {external:CanvasRenderingContext2D} context The drawing context.
  */
 AnimatedEntity.prototype.draw = function(context) {
@@ -84,8 +86,8 @@ AnimatedEntity.prototype.draw = function(context) {
 	// context.strokeRect(this.x, this.y, this.width, this.height);
 };
 /**
- * Make a copy of this AnimatedEntity. The {@link AnimatedEntity#sprite} is not copied, so both entities will share it.
- * @returns {AnimatedEntity}
+ * Make a copy of this AnimatedEntity. The {@link Splat.AnimatedEntity#sprite} is not copied, so both entities will share it.
+ * @returns {Splat.AnimatedEntity}
  */
 AnimatedEntity.prototype.copy = function() {
 	return new AnimatedEntity(this.x, this.y, this.width, this.height, this.sprite, this.spriteOffsetX, this.spriteOffsetY);
@@ -102,13 +104,13 @@ module.exports = AnimatedEntity;
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="BinaryHeap.html">BinaryHeap</a></li><li><a href="Camera.html">Camera</a></li><li><a href="Entity.html">Entity</a></li><li><a href="Game.html">Game</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="Scene.html">Scene</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Timer.html">Timer</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-buffer.html">buffer</a></li><li><a href="module-KeyMap.html">KeyMap</a></li></ul><h3>Externals</h3><ul><li><a href="external-AudioContext.html">AudioContext</a></li><li><a href="external-canvas.html">canvas</a></li><li><a href="external-CanvasRenderingContext2D.html">CanvasRenderingContext2D</a></li><li><a href="external-image.html">image</a></li></ul><h3>Classes</h3><ul><li><a href="Accelerometer.html">Accelerometer</a></li><li><a href="Animation.html">Animation</a></li><li><a href="AnimationLoader.html">AnimationLoader</a></li><li><a href="FontLoader.html">FontLoader</a></li><li><a href="ImageLoader.html">ImageLoader</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Mouse.html">Mouse</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="SoundLoader.html">SoundLoader</a></li><li><a href="Splat.AnimatedEntity.html">AnimatedEntity</a></li><li><a href="Splat.AStar.html">AStar</a></li><li><a href="Splat.BinaryHeap.html">BinaryHeap</a></li><li><a href="Splat.Camera.html">Camera</a></li><li><a href="Splat.Entity.html">Entity</a></li><li><a href="Splat.EntityBoxCamera.html">EntityBoxCamera</a></li><li><a href="Splat.Game.html">Game</a></li><li><a href="Splat.NinePatch.html">NinePatch</a></li><li><a href="Splat.Scene.html">Scene</a></li><li><a href="Splat.Timer.html">Timer</a></li></ul><h3>Namespaces</h3><ul><li><a href="Splat.html">Splat</a></li><li><a href="Splat.math.html">math</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 12 2014 23:10:00 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon May 26 2014 14:00:43 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>
