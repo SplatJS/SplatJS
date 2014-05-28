@@ -25,6 +25,9 @@
 		"url": "https://github.com/ericlathrop/splat/issues"
 	},
 	"homepage": "https://github.com/ericlathrop/splat",
+	"dependencies": {
+		"mersenne-twister": "^1.0.1"
+	},
 	"devDependencies": {
 		"browserify": "~3.24.11",
 		"jshint": "^2.4.4",
