@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: key_map.js</title>
+    <title>JSDoc: Class: Random</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,124 +17,194 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: key_map.js</h1>
+    <h1 class="page-title">Class: Random</h1>
 
     
 
 
+
+<section>
+
+<header>
+    <h2>
+        <span class="ancestors"><a href="Splat.html">Splat</a><a href="Splat.math.html">.math</a>.</span>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Keyboard code mappings that map keycodes to key names. A specific named map should be given to {@link Keyboard}. The default map is "US".
- * @module KeyMap
- */
-module.exports = {
-	"US": {
-		8: "backspace",
-		9: "tab",
-		13: "enter",
-		16: "shift",
-		17: "ctrl",
-		18: "alt",
-		19: "pause/break",
-		20: "capslock",
-		27: "escape",
-		32: "space",
-		33: "pageup",
-		34: "pagedown",
-		35: "end",
-		36: "home",
-		37: "left",
-		38: "up",
-		39: "right",
-		40: "down",
-		45: "insert",
-		46: "delete",
-		48: "0",
-		49: "1",
-		50: "2",
-		51: "3",
-		52: "4",
-		53: "5",
-		54: "6",
-		55: "7",
-		56: "8",
-		57: "9",
-		65: "a",
-		66: "b",
-		67: "c",
-		68: "d",
-		69: "e",
-		70: "f",
-		71: "g",
-		72: "h",
-		73: "i",
-		74: "j",
-		75: "k",
-		76: "l",
-		77: "m",
-		78: "n",
-		79: "o",
-		80: "p",
-		81: "q",
-		82: "r",
-		83: "s",
-		84: "t",
-		85: "u",
-		86: "v",
-		87: "w",
-		88: "x",
-		89: "y",
-		90: "z",
-		91: "leftwindow",
-		92: "rightwindow",
-		93: "select",
-		96: "numpad-0",
-		97: "numpad-1",
-		98: "numpad-2",
-		99: "numpad-3",
-		100: "numpad-4",
-		101: "numpad-5",
-		102: "numpad-6",
-		103: "numpad-7",
-		104: "numpad-8",
-		105: "numpad-9",
-		106: "multiply",
-		107: "add",
-		109: "subtract",
-		110: "decimalpoint",
-		111: "divide",
-		112: "f1",
-		113: "f2",
-		114: "f3",
-		115: "f4",
-		116: "f5",
-		117: "f6",
-		118: "f7",
-		119: "f8",
-		120: "f9",
-		121: "f10",
-		122: "f11",
-		123: "f12",
-		144: "numlock",
-		145: "scrolllock",
-		186: "semicolon",
-		187: "equals",
-		188: "comma",
-		189: "dash",
-		190: "period",
-		191: "forwardslash",
-		192: "graveaccent",
-		219: "openbracket",
-		220: "backslash",
-		221: "closebraket",
-		222: "singlequote"
-	}
-};
-</code></pre>
-        </article>
-    </section>
+    Random
+    </h2>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    <h4 class="name" id="Random"><span class="type-signature"></span>new Random<span class="signature">(<span class="optional">seed</span>)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        A seedable pseudo-random number generator. Currently a Mersenne Twister PRNG.
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>seed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The seed for the PRNG.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="math.js.html">math.js</a>, <a href="math.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://github.com/boo1ean/mersenne-twister">mersenne-twister package at github</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>var rand = new Splat.math.Random(123);
+var val = rand.random();</code></pre>
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
