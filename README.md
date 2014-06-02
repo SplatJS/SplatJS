@@ -36,7 +36,7 @@ Options:
 1. Copy the [Splat Pong](https://github.com/mintleaf/splatpong) repository and modify it.
 2. Download a prebuilt splat.js file from **SOMEWHERE**.
 3. `npm install splat2d` and use [browserify](http://browserify.org/) to `require()` it into your game and produce a single, minified .js file.
-4. `git submodule add http://github.com/ericlathrop/splat.git` then `cd splat` then `npm run build`
+4. `git submodule add http://github.com/ericlathrop/splat.git` then `cd splat` then 'npm install' to update splat's npm module dependencies, then `npm run build` to create the splat.js file
 
 Games using Splat
 =================
