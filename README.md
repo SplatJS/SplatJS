@@ -1,8 +1,8 @@
-# Splat
+# SplatJS
 
 A 2d HTML5 Canvas game engine
 
-Splat is a 2d game engine made for creating multi-platform games entirely in Javascript.
+SplatJS is a 2d game engine made for creating multi-platform games entirely in JavaScript.
 
 # Features
 
@@ -23,9 +23,9 @@ Splat is a 2d game engine made for creating multi-platform games entirely in Jav
 * iOS using [Ejecta](http://impactjs.com/ejecta)
 * Chrome Web Store
 
-Splat works in PhoneGap/Cordova, but it seems like the apps it produces lack hardware acceleration, making games unplayable.
+SplatJS works in PhoneGap/Cordova, but it seems like the apps it produces lack hardware acceleration, making games unplayable.
 
-# Download a standalone Splat.js:
+# Download a standalone SplatJS:
 
 * 0.1.0 [uncompressed](https://splatjs.github.io/download/splat-0.1.0.js) - [minified](https://splatjs.github.io/download/splat-0.1.0.min.js)
 
@@ -34,21 +34,21 @@ Splat works in PhoneGap/Cordova, but it seems like the apps it produces lack har
 ```
 $ npm install --save splat2d
 ```
-Then require Splat into your game:
+Then require SplatJS into your game:
 ```
 var Splat = require("splat");
 ```
 Then use [browserify](http://browserify.org/) to bundle your game as a single JavaScript file for the browser.
 
-# Games using Splat
+# Games using SplatJS
 
-* [Splat Pong](https://github.com/mintleaf/splatpong) is a good tutorial project to read through.
-* [Mr. Fluffykin's Great Sorting Adventure](http://www.ludumdare.com/compo/ludum-dare-29/?action=preview&uid=37347)
+* [Splat Pong](https://github.com/SplatJS/splatpong) is a good tutorial project to read through.
+* [Mr. Fluffykin's Great Sorting Adventure](http://twoscoopgames.com/fluffykins/)
 * [Arkeynoid](http://mintchipleaf.com/games/ludum/)
-* [Kickbot](http://twoscoopgames.com/kickbotgame/)
+* [Kickbot](http://twoscoopgames.com/kickbot/)
 * [base.jump](http://mintchipleaf.com/games/basejump/)
-* [Apartment 213](http://twoscoopgames.com/apt-213game/)
-* [Scurry](http://twoscoopgames.com/scurrygame/)
+* [Apartment 213](http://twoscoopgames.com/apartment213/)
+* [Scurry](http://twoscoopgames.com/scurry/)
 * [Echo Bat](http://mintchipleaf.com/games/echobat/)
 
 Send a pull request to add your game to the list!

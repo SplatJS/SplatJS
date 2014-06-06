@@ -1,5 +1,5 @@
 {
-	"name": "splat2d",
+	"name": "splatjs",
 	"version": "0.1.0",
 	"description": "A 2D HTML5 Canvas game engine",
 	"main": "lib/main.js",
@@ -11,7 +11,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ericlathrop/splat.git"
+		"url": "https://github.com/SplatJS/SplatJS.git"
 	},
 	"keywords": [
 		"html5",
@@ -22,9 +22,9 @@
 	"author": "Eric Lathrop <eric@ericlathrop.com> (http://ericlathrop.com)",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/ericlathrop/splat/issues"
+		"url": "https://github.com/SplatJS/SplatJS/issues"
 	},
-	"homepage": "https://github.com/ericlathrop/splat",
+	"homepage": "https://splatjs.github.io",
 	"dependencies": {
 		"mersenne-twister": "^1.0.1"
 	},
