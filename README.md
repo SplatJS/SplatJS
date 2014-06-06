@@ -32,7 +32,7 @@ SplatJS works in PhoneGap/Cordova, but it seems like the apps it produces lack h
 # Install through [NPM](https://www.npmjs.org)
 
 ```
-$ npm install --save splat2d
+$ npm install --save splatjs
 ```
 Then require SplatJS into your game:
 ```
