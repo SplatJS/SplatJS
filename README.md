@@ -1,12 +1,10 @@
-Splat
-=====
+# Splat
 
 A 2d HTML5 Canvas game engine
 
 Splat is a 2d game engine made for creating multi-platform games entirely in Javascript.
 
-Features
-========
+# Features
 
 * Retangles!
 * Keyboard, mouse, and touch input
@@ -14,9 +12,9 @@ Features
 * Sprite animation
 * Asset loading, and built-in loading screen
 * Games work well on phones, tablets, and desktop browsers.
+* A\* Pathfinding
 
-Supported Platforms
-===================
+# Supported Platforms
 
 * Chrome (desktop & mobile)
 * Firefox
@@ -27,20 +25,24 @@ Supported Platforms
 
 Splat works in PhoneGap/Cordova, but it seems like the apps it produces lack hardware acceleration, making games unplayable.
 
-Installation
-============
+# Download a standalone Splat.js:
 
-**This is still a work-in-progress.**
+* 0.1.0 [uncompressed](https://splatjs.github.io/download/splat-0.1.0.js) - [minified](https://splatjs.github.io/download/splat-0.1.0.min.js)
 
-Options:
-1. Copy the [Splat Pong](https://github.com/mintleaf/splatpong) repository and modify it.
-2. Download a prebuilt splat.js file from **SOMEWHERE**.
-3. `npm install splat2d` and use [browserify](http://browserify.org/) to `require()` it into your game and produce a single, minified .js file.
-4. `git submodule add http://github.com/ericlathrop/splat.git` then `cd splat` then 'npm install' to update splat's npm module dependencies, then `npm run build` to create the splat.js file
+# Install through [NPM](https://www.npmjs.org)
 
-Games using Splat
-=================
+```
+$ npm install --save splat2d
+```
+Then require Splat into your game:
+```
+var Splat = require("splat");
+```
+Then use [browserify](http://browserify.org/) to bundle your game as a single JavaScript file for the browser.
 
+# Games using Splat
+
+* [Splat Pong](https://github.com/mintleaf/splatpong) is a good tutorial project to read through.
 * [Mr. Fluffykin's Great Sorting Adventure](http://www.ludumdare.com/compo/ludum-dare-29/?action=preview&uid=37347)
 * [Arkeynoid](http://mintchipleaf.com/games/ludum/)
 * [Kickbot](http://twoscoopgames.com/kickbotgame/)

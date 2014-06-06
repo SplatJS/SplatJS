@@ -1,11 +1,11 @@
 {
 	"name": "splat2d",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "A 2D HTML5 Canvas game engine",
 	"main": "lib/main.js",
 	"scripts": {
 		"lint-js": "bash -c \"jshint lib/*.js\"",
-		"build-js": "browserify lib/main.js -o splat.js -s Splat",
+		"build-js": "node build.js",
 		"build-docs": "bash -c \"jsdoc -d docs README.md lib/*.js lib/*.jsdoc\"",
 		"build": "npm run lint-js && npm run build-js && npm run build-docs"
 	},
@@ -30,8 +30,9 @@
 	},
 	"devDependencies": {
 		"browserify": "~3.24.11",
+		"jsdoc": "^3.3.0-alpha5",
 		"jshint": "^2.4.4",
-		"jsdoc": "^3.3.0-alpha5"
+		"uglifyify": "^2.4.0"
 	},
 	"jshintConfig": {
 		"camelcase": true,
