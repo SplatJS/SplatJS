@@ -14,7 +14,7 @@
  * @param {external:CanvasRenderingContext2D} context The context to use for drawing
  */
 /**
- * A function that compares two elements and returns a number that determines how they should be sorted. 
+ * A function that compares two elements and returns a number that determines how they should be sorted.
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort Array.prototype.sort() at Mozilla Developer Network}
  * @callback compareFunction
  * @param {object} a
