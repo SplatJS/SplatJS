@@ -1,6 +1,6 @@
-# 0.2.0
+# 1.0.0
 
-Convert save data to async API so it works with Chrome Apps.
+Convert save data to async API so it works with Chrome Apps. This is a breaking change, so respecting semver makes me bump the version to 1.0.0. :-/
 
 # 0.1.6
 
