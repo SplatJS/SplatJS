@@ -1,3 +1,7 @@
+# 0.2.0
+
+Convert save data to async API so it works with Chrome Apps.
+
 # 0.1.6
 
 Fix scaling on Ejecta. You must now specify canvas.width/height in JS instead of HTML.

@@ -27,7 +27,7 @@ SplatJS works in PhoneGap/Cordova, but it seems like the apps it produces lack h
 
 # Download a standalone SplatJS:
 
-* 0.1.6 [uncompressed](https://splatjs.github.io/download/splat-0.1.6.js) - [minified](https://splatjs.github.io/download/splat-0.1.6.min.js)
+* 0.2.0 [uncompressed](https://splatjs.github.io/download/splat-0.2.0.js) - [minified](https://splatjs.github.io/download/splat-0.2.0.min.js)
 
 # Install through [NPM](https://www.npmjs.org)
 
