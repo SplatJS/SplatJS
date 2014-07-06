@@ -1,3 +1,7 @@
+# 1.1.1
+
+Include ad sizes.
+
 # 1.1.0
 
 Add advertising support. Currently only uses iAd in Ejecta.
