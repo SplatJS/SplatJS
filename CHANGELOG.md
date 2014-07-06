@@ -1,3 +1,7 @@
+# 1.1.0
+
+Add advertising support. Currently only uses iAd in Ejecta.
+
 # 1.0.1
 
 Fix mouse coordinates in Ejecta when canvas is scaled.
