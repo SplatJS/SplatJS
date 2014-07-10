@@ -1,3 +1,7 @@
+# 1.1.2
+
+Fix iPhone/iPad detection.
+
 # 1.1.1
 
 Include ad sizes.
