@@ -1,3 +1,7 @@
+# 1.3.0
+
+Add openUrl(). And Mouse.onmouseup.
+
 # 1.2.0
 
 Add optional bounding rectangle to Mouse.isPressed(). This makes the API more similar to consumePressed().
