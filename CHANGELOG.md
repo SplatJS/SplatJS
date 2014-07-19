@@ -1,3 +1,7 @@
+# 1.2.0
+
+Add optional bounding rectangle to Mouse.isPressed(). This makes the API more similar to consumePressed().
+
 # 1.1.2
 
 Fix iPhone/iPad detection.
