@@ -6,7 +6,7 @@ SplatJS is a 2d game engine made for creating multi-platform games entirely in J
 
 # Features
 
-* Retangles!
+* Rectangles!
 * Keyboard, mouse, and touch input
 * Sounds and music (Web Audio API and HTML5 Audio)
 * Sprite animation
