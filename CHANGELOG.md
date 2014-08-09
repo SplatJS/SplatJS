@@ -1,3 +1,7 @@
+# 2.0.0
+
+Implement volume control and change how mute works.
+
 # 1.3.0
 
 Add openUrl(). And Mouse.onmouseup.
