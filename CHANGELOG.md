@@ -1,3 +1,7 @@
+# 2.2.0
+
+Change Entity.solveCollisions() to return an array of entities that were involved in collisions.
+
 # 2.1.0
 
 Way better collision solving.
