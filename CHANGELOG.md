@@ -1,3 +1,7 @@
+# 2.1.0
+
+Way better collision solving.
+
 # 2.0.0
 
 Implement volume control and change how mute works.
