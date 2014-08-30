@@ -1,6 +1,6 @@
 {
 	"name": "splatjs",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"description": "A 2D HTML5 Canvas game engine",
 	"main": "lib/main.js",
 	"scripts": {
