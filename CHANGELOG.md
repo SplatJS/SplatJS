@@ -1,6 +1,6 @@
 # 2.3.0
 
-Add Animation.rotateClockwise()/.rotateCounterclockwise() and buffer.rotateClockwise()/.rotateCounterclickwise().
+Add Animation.rotateClockwise()/.rotateCounterclockwise() and buffer.rotateClockwise()/.rotateCounterclickwise(). Add AnimationLoader support for rotation.
 
 # 2.2.0
 
