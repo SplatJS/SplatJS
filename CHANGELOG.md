@@ -1,3 +1,7 @@
+# 2.4.0
+
+Add support for Game Center leaderboards and achievements.
+
 # 2.3.0
 
 Add Animation.rotateClockwise()/.rotateCounterclockwise() and buffer.rotateClockwise()/.rotateCounterclickwise(). Add AnimationLoader support for rotation.
