@@ -1,6 +1,7 @@
 # 2.4.0
 
 Add support for Game Center leaderboards and achievements.
+Add new Button class to make animated buttons much easier.
 
 # 2.3.0
 
