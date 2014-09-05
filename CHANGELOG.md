@@ -1,6 +1,7 @@
 # 2.4.0
 
 Add support for Game Center leaderboards and achievements.
+Add support for In-App Purchases. Not to be used for evil!
 Add new Button class to make animated buttons much easier.
 
 # 2.3.0
