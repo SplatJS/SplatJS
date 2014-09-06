@@ -13,6 +13,7 @@ SplatJS is a 2d game engine made for creating multi-platform games entirely in J
 * Asset loading, and built-in loading screen
 * Games work well on phones, tablets, and desktop browsers.
 * A\* Pathfinding
+* Particles
 
 # Supported Platforms
 
