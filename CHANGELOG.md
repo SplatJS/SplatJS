@@ -1,3 +1,7 @@
+# 2.5.0
+
+Pause scenes and mute audio when tab loses focus.
+
 # 2.4.0
 
 Add support for Game Center leaderboards and achievements.
