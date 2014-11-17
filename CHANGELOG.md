@@ -1,3 +1,8 @@
+# 3.0.0
+
+Simulate the game at the same frequency independant of the drawing framerate.
+There are no breaking API changes, but the games will run differently now, thus justifying a major version number.
+
 # 2.5.0
 
 Pause scenes and mute audio when tab loses focus.
