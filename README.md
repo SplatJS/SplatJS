@@ -44,6 +44,8 @@ Then use [browserify](http://browserify.org/) to bundle your game as a single Ja
 # Games using SplatJS
 
 * [Splat Pong](https://github.com/SplatJS/splatpong) is a good tutorial project to read through.
+* [SyRUSH](http://twoscoopgames.com/syrush/)
+* [Stanley Squeaks and the Emerald Burrito](http://twoscoopgames.com/stanleysqueaks/)
 * [Mr. Fluffykin's Great Sorting Adventure](http://twoscoopgames.com/fluffykins/)
 * [Arkeynoid](http://mintchipleaf.com/games/ludum/)
 * [Kickbot](http://twoscoopgames.com/kickbot/)
