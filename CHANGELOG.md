@@ -1,3 +1,7 @@
+# 3.0.1
+
+Fix infinite loop with unresolvable collisions.
+
 # 3.0.0
 
 Simulate the game at the same frequency independant of the drawing framerate.
