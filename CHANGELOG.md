@@ -1,3 +1,7 @@
+# 3.0.2
+
+Fix keyboard events bubbling outside of game. Helps when a game is inside of an iframe.
+
 # 3.0.1
 
 Fix infinite loop with unresolvable collisions.
