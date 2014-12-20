@@ -4,9 +4,9 @@
   "description": "A 2D HTML5 Canvas game engine",
   "main": "lib/main.js",
   "scripts": {
-    "lint-js": "bash -c \"jshint lib/*.js\"",
+    "lint-js": "find lib -iname \"*.js\" | xargs jshint",
     "build-js": "node build.js",
-    "build-docs": "bash -c \"jsdoc -d docs README.md lib/*.js lib/*.jsdoc\"",
+    "build-docs": "find lib -iname \"*.js\" -o -iname \"*.jsdoc\" | xargs jsdoc -d docs README.md",
     "build": "npm run lint-js && npm run build-js && npm run build-docs"
   },
   "repository": {
