@@ -26,6 +26,7 @@
   },
   "homepage": "https://splatjs.github.io",
   "dependencies": {
+    "game-keyboard": "0.0.0",
     "mersenne-twister": "^1.0.1"
   },
   "devDependencies": {
