@@ -21,12 +21,11 @@ function Accelerometer() {
 	 */
 	this.gamma = 0;
 
-	var self = this;
-	window.addEventListener("deviceorientation", function(event) {
-		self.alpha = event.alpha;
-		self.beta = event.beta;
-		self.gamma = event.gamma;
+	window.addEventListener("deviceorientation", event => {
+		this.alpha = event.alpha;
+		this.beta = event.beta;
+		this.gamma = event.gamma;
 	}, false);
 }
 
-module.exports = Accelerometer;
+export = Accelerometer;

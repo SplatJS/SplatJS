@@ -3,10 +3,17 @@
  * @namespace Splat.ads
  */
 
-var platform = require("./platform");
+import platform = require("./platform");
+
+var ads = {
+	"show": (isAtBottom: boolean) => {},
+	"hide": () => {},
+	"width": 0,
+	"height": 0,
+};
 
 if (platform.isEjecta()) {
-	var adBanner = new window.Ejecta.AdBanner();
+	var adBanner = new (<any>window).Ejecta.AdBanner(); // TODO: Type info for Ejecta?
 
 	var isLandscape = window.innerWidth > window.innerHeight;
 
@@ -36,13 +43,13 @@ if (platform.isEjecta()) {
 	var device = window.navigator.userAgent.indexOf("iPad") >= 0 ? "iPad" : "iPhone";
 	var size = sizes[device][isLandscape ? "landscape" : "portrait"];
 
-	module.exports = {
+	ads = {
 		/**
 		 * Show an advertisement.
 		 * @alias Splat.ads.show
 		 * @param {boolean} isAtBottom true if the ad should be shown at the bottom of the screen. false if it should be shown at the top.
 		 */
-		"show": function(isAtBottom) {
+		"show": (isAtBottom) => {
 			adBanner.isAtBottom = isAtBottom;
 			adBanner.show();
 		},
@@ -50,9 +57,7 @@ if (platform.isEjecta()) {
 		 * Hide the current advertisement.
 		 * @alias Splat.ads.hide
 		 */
-		"hide": function() {
-			adBanner.hide();
-		},
+		"hide": () => adBanner.hide(),
 		/**
 		 * The width of the ad that will show.
 		 * @alias Splat.ads#width
@@ -64,11 +69,6 @@ if (platform.isEjecta()) {
 		 */
 		"height": size.height
 	};
-} else {
-	module.exports = {
-		"show": function() {},
-		"hide": function() {},
-		"width": 0,
-		"height": 0,
-	};
 }
+
+export = ads;
