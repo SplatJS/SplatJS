@@ -1,13 +1,21 @@
 "use strict";
 
-var platform = require("./platform");
+import platform = require("./platform");
+
+interface IAP {
+	get(sku: string, callback: (a, b?) => void);
+	buy(product: any, quantity: number, callback: (a, b?) => void);
+	restore(callback: (a, b?) => void);
+}
+
+var iap: IAP;
 
 if (platform.isEjecta()) {
-	var iap = new window.Ejecta.IAPManager();
+	var ejectaiap = new (<any>window).Ejecta.IAPManager();
 
-	module.exports = {
+	iap = {
 		"get": function(sku, callback) {
-			iap.getProducts([sku], function(err, products) {
+			ejectaiap.getProducts([sku], function(err, products) {
 				if (err) {
 					callback(err);
 					return;
@@ -19,7 +27,7 @@ if (platform.isEjecta()) {
 			product.purchase(quantity, callback);
 		},
 		"restore": function(callback) {
-			iap.restoreTransactions(function(err, transactions) {
+			ejectaiap.restoreTransactions(function(err, transactions) {
 				if (err) {
 					callback(err);
 					return;
@@ -33,9 +41,9 @@ if (platform.isEjecta()) {
 } else if (platform.isChromeApp()) {
 	// FIXME: needs google's buy.js included
 	// https://developer.chrome.com/webstore/payments-iap
-	module.exports = {
+	iap = {
 		"get": function(sku, callback) {
-			window.google.payments.inapp.getSkuDetails({
+			(<any>window).google.payments.inapp.getSkuDetails({
 				"parameters": {
 					"env": "prod"
 				},
@@ -49,7 +57,7 @@ if (platform.isEjecta()) {
 			});
 		},
 		"buy": function(product, quantity, callback) { // jshint ignore:line
-			window.google.payments.inapp.buy({
+			(<any>window).google.payments.inapp.buy({
 				"parameters": {
 					"env": "prod"
 				},
@@ -63,7 +71,7 @@ if (platform.isEjecta()) {
 			});
 		},
 		"restore": function(callback) {
-			window.google.payments.inapp.getPurchases({
+			(<any>window).google.payments.inapp.getPurchases({
 				"success": function(response) {
 					callback(undefined, response.response.details.map(function(detail) {
 						return detail.sku;
@@ -76,7 +84,7 @@ if (platform.isEjecta()) {
 		}
 	};
 } else {
-	module.exports = {
+	iap = {
 		"get": function(sku, callback) { // jshint ignore:line
 			callback(undefined, undefined);
 		},
@@ -88,3 +96,5 @@ if (platform.isEjecta()) {
 		}
 	};
 }
+
+export = iap;

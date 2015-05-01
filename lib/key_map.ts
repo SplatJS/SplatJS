@@ -1,8 +1,16 @@
+interface KeyNameLookup {
+	[key: number]: string;
+}
+
+interface KeyMap {
+	[code: string]: KeyNameLookup;
+}
+
 /**
  * Keyboard code mappings that map keycodes to key names. A specific named map should be given to {@link Keyboard}. The default map is "US".
  * @module KeyMap
  */
-module.exports = {
+var keymap: KeyMap = {
 	"US": {
 		8: "backspace",
 		9: "tab",
@@ -105,3 +113,5 @@ module.exports = {
 		222: "singlequote"
 	}
 };
+
+export = keymap;

@@ -3,10 +3,25 @@
  * @namespace Splat.leaderboards
  */
 
-var platform = require("./platform");
+import platform = require("./platform");
+
+interface Leaderboard {
+	/**
+	 * Report that an achievement was achieved.
+	 * @alias Splat.leaderboards.reportAchievement
+	 * @param {string} id The name of the achievement.
+	 * @param {int} percent The percentage of the achievement that is completed in the range of 0-100.
+	 */
+	reportAchievement(id: string, percent: number);
+	reportScore(leaderboard: string, score: number);
+	showAchievements();
+	showLeaderboard(name: string);
+}
+
+var leaderboard: Leaderboard;
 
 if (platform.isEjecta()) {
-	var gameCenter = new window.Ejecta.GameCenter();
+	var gameCenter = new (<any>window).Ejecta.GameCenter();
 	gameCenter.softAuthenticate();
 
 	var authFirst = function(action) {
@@ -22,24 +37,12 @@ if (platform.isEjecta()) {
 		}
 	};
 
-	module.exports = {
-		/**
-		 * Report that an achievement was achieved.
-		 * @alias Splat.leaderboards.reportAchievement
-		 * @param {string} id The name of the achievement.
-		 * @param {int} percent The percentage of the achievement that is completed in the range of 0-100.
-		 */
+	leaderboard = {
 		"reportAchievement": function(id, percent) {
 			authFirst(function() {
 				gameCenter.reportAchievement(id, percent);
 			});
 		},
-		/**
-		 * Report that a score was achieved on a leaderboard.
-		 * @alias Splat.leaderboards.reportScore
-		 * @param {string} leaderboard The name of the leaderboard the score is on.
-		 * @param {int} score The score that was achieved.
-		 */
 		"reportScore": function(leaderboard, score) {
 			authFirst(function() {
 				gameCenter.reportScore(leaderboard, score);
@@ -66,7 +69,7 @@ if (platform.isEjecta()) {
 		}
 	};
 } else {
-	module.exports = {
+	leaderboard = {
 		"reportAchievement": function() {},
 		"reportScore": function() {},
 		"showAchievements": function() {},
@@ -74,3 +77,4 @@ if (platform.isEjecta()) {
 	};
 }
 
+export = leaderboard;
