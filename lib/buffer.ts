@@ -10,7 +10,7 @@ import platform = require("./platform");
  * @returns {external:canvas} A canvas DOM element
  * @private
  */
-function makeCanvas(width, height) {
+function makeCanvas(width: number, height: number) {
 	var c = document.createElement("canvas");
 	c.width = width;
 	c.height = height;
@@ -28,9 +28,9 @@ function makeCanvas(width, height) {
  * @param {drawCallback} drawFun The callback that draws on the buffer
  * @returns {external:canvas} The drawn buffer
  */
-export function makeBuffer(width, height, drawFun) {
+export function makeBuffer(width: number, height: number, drawFun: (ctx: CanvasRenderingContext2D) => void) {
 	var canvas = makeCanvas(width, height);
-	var ctx = canvas.getContext("2d");
+	var ctx = (<CanvasRenderingContext2D>canvas.getContext("2d"));
 	// when image smoothing is enabled, the image gets blurred and the pixel data isn't correct even when the image shouldn't be scaled which breaks NinePatch
 	if (platform.isEjecta()) {
 		(<any>ctx).imageSmoothingEnabled = false;
@@ -44,7 +44,7 @@ export function makeBuffer(width, height, drawFun) {
  * @param {external:canvas|external:image} buffer The original image
  * @return {external:canvas} The flipped buffer
  */
-export function flipBufferHorizontally(buffer) {
+export function flipBufferHorizontally(buffer: any) {
 	return makeBuffer(buffer.width, buffer.height, function(context) {
 		context.scale(-1, 1);
 		context.drawImage(buffer, -buffer.width, 0);
@@ -56,7 +56,7 @@ export function flipBufferHorizontally(buffer) {
  * @param {external:canvas|external:image} buffer The original image
  * @return {external:canvas} The flipped buffer
  */
-export function flipBufferVertically(buffer) {
+export function flipBufferVertically(buffer: any) {
 	return makeBuffer(buffer.width, buffer.height, function(context) {
 		context.scale(1, -1);
 		context.drawImage(buffer, 0, -buffer.height);
@@ -67,7 +67,7 @@ export function flipBufferVertically(buffer) {
  * @param {external:canvas|external:image} buffer The original image
  * @return {external:canvas} The rotated buffer
  */
-export function rotateClockwise(buffer) {
+export function rotateClockwise(buffer: any) {
 	var w = buffer.height;
 	var h = buffer.width;
 	var w2 = Math.floor(w / 2);
@@ -83,7 +83,7 @@ export function rotateClockwise(buffer) {
  * @param {external:canvas|external:image} buffer The original image
  * @return {external:canvas} The rotated buffer
  */
-export function rotateCounterclockwise(buffer) {
+export function rotateCounterclockwise(buffer: any) {
 	var w = buffer.height;
 	var h = buffer.width;
 	var w2 = Math.floor(w / 2);

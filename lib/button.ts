@@ -13,7 +13,7 @@ class Button {
 	state = "normal";
 	isToggle = false;
 	
-	constructor(mouse, x: number, y: number, sprites, stateChanged: (state: string) => {}) {
+	constructor(mouse: any, x: number, y: number, sprites: any, stateChanged: (state: string) => {}) {
 		this.mouse = mouse;
 		this.x = x;
 		this.y = y;
@@ -38,7 +38,7 @@ class Button {
 	}
 	
 	move(elapsedMillis: number) {
-		var changeState = (state) => {
+		var changeState = (state: string) => {
 			this.state = state;
 			this.stateChanged(state);
 			if (this.sprites[state] instanceof Animation) {
@@ -71,7 +71,7 @@ class Button {
 		}
 	}
 	
-	draw(context) {
+	draw(context: CanvasRenderingContext2D) {
 		var sprite = this.sprites[this.state];
 		if (typeof sprite.draw === "function") {
 			sprite.draw(context, this.x, this.y);

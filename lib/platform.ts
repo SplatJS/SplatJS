@@ -1,9 +1,9 @@
 "use strict";
 
-export function isChromeApp() {
+export function isChromeApp(): boolean {
 	return (<any>window).chrome && (<any>window).chrome.app && (<any>window).chrome.app.runtime;
 }
 
-export function isEjecta() {
+export function isEjecta(): boolean {
 	return (<any>window).ejecta;
 }

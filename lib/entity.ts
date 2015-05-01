@@ -186,7 +186,7 @@ class Entity {
 		return (x !== lastX) || (y !== lastY);
 	}
 	
-	draw(context: any) {
+	draw(context: CanvasRenderingContext2D) {
 		// draw bounding boxes
 		// context.strokeStyle = "#ff0000";
 		// context.strokeRect(this.x, this.y, this.width, this.height);
@@ -267,7 +267,7 @@ class Entity {
 	 * @return {Array} A list of entities that were involved in collisions.
 	 */
 	solveCollisions(entities: Entity[]) {
-		var involved = [];
+		var involved: Entity[] = [];
 	
 		var countCollisionsAfterResolution = (block: Entity) => {
 			var x = this.x;
@@ -304,10 +304,10 @@ class Entity {
 			this.resolveCollisionWith(minResolve.block);
 			involved.push(minResolve.block);
 	
-			if (minResolve[1] === collisions.length) {
+			if (minResolve.len === collisions.length) {
 				break;
 			}
-			if (minResolve[1] === 0) {
+			if (minResolve.len === 0) {
 				break;
 			}
 		}

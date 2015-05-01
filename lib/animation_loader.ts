@@ -19,14 +19,14 @@ interface AnimationManifest {
 	[name: string]: AnimationManifestItem;
 }
 
-function makeFrame(img, frameWidth, f) {
-	return buffer.makeBuffer(frameWidth, img.height, function(ctx) {
+function makeFrame(img: any, frameWidth: number, f: number) {
+	return buffer.makeBuffer(frameWidth, img.height, function(ctx: CanvasRenderingContext2D) {
 		var sx = f * frameWidth;
 		ctx.drawImage(img, sx, 0, frameWidth, img.height, 0, 0, frameWidth, img.height);
 	});
 }
 
-function makeAnimation(img, numFrames, time) {
+function makeAnimation(img: any, numFrames: number, time: number) {
 	var a = new Animation();
 	var frameWidth = img.width / numFrames |0;
 	for (var f = 0; f < numFrames; f++) {
@@ -35,7 +35,7 @@ function makeAnimation(img, numFrames, time) {
 	return a;
 }
 
-function loadImageFromManifest(imageLoader, name, info) {
+function loadImageFromManifest(imageLoader: any, name: string, info: AnimationManifestItem) {
 	if (info.strip !== undefined) {
 		imageLoader.load(name, info.strip);
 	} else if (info.prefix !== undefined) {
@@ -52,7 +52,7 @@ function loadImageFromManifest(imageLoader, name, info) {
 	}
 }
 
-function loadImagesFromManifest(imageLoader, manifest: AnimationManifest) {
+function loadImagesFromManifest(imageLoader: any, manifest: AnimationManifest) {
 	for (var key in manifest) {
 		if (manifest.hasOwnProperty(key)) {
 			var info = manifest[key];
@@ -61,8 +61,8 @@ function loadImagesFromManifest(imageLoader, manifest: AnimationManifest) {
 	}
 }
 
-function makeAnimationFromManifest(images, key, manifestEntry: AnimationManifestItem) {
-	var animation;
+function makeAnimationFromManifest(images: any, key: string, manifestEntry: AnimationManifestItem) {
+	var animation: Animation;
 	if (manifestEntry.strip !== undefined) {
 		var strip = images.get(key);
 		animation = makeAnimation(strip, manifestEntry.frames, manifestEntry.msPerFrame);
@@ -95,8 +95,8 @@ function makeAnimationFromManifest(images, key, manifestEntry: AnimationManifest
 	return animation;
 }
 
-function generateAnimationsFromManifest(images, manifest: AnimationManifest) {
-	var animations = {};
+function generateAnimationsFromManifest(images: any, manifest: AnimationManifest) {
+	var animations: any = {};
 	for (var key in manifest) {
 		if (manifest.hasOwnProperty(key)) {
 			var info = manifest[key];
@@ -149,7 +149,7 @@ class AnimationLoader {
 		var imageLoader = new Splat.ImageLoader();
 		var animationLoader = new Splat.AnimationLoader(imageLoader, manifest);
 	 */
-	constructor(imageLoader, manifest: AnimationManifest) {
+	constructor(imageLoader: any, manifest: AnimationManifest) {
 		this.imageLoader = imageLoader;
 		this.manifest = manifest;
 		loadImagesFromManifest(imageLoader, manifest);
@@ -178,7 +178,7 @@ class AnimationLoader {
 	 * @param {string} name The name to store the {@link Animation} under. This name will be used to retrieve the Animation from {@link AnimationLoader#get}.
 	 * @param {object} info A single-animation portion of {@link AnimationLoader#manifest}.
 	 */
-	load(name, info: AnimationManifestItem) {
+	load(name: string, info: AnimationManifestItem) {
 		this.manifest[name] = info;
 		this.loaded = false;
 		loadImageFromManifest(this.imageLoader, name, info);
@@ -189,7 +189,7 @@ class AnimationLoader {
 	 * @param {string} name The name used to identify the {@link Animation} in the {@link AnimationLoader#manifest}.
 	 * @returns {Animation}
 	 */
-	get(name) {
+	get(name: string) {
 		var anim = this.animations[name];
 		if (anim === undefined) {
 			console.error("Unknown animation: " + name);

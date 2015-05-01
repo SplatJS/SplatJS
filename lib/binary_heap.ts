@@ -38,7 +38,7 @@ class BinaryHeap<T> {
 	 * @returns {number}
 	 * @private
 	 */
-	private parentIndex(i) {
+	private parentIndex(i: number) {
 		return ((i - 1) / 2) |0;
 	}
 	

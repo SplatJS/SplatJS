@@ -54,7 +54,7 @@ class AnimatedEntity extends Entity {
 	 * Draw the {@link Splat.AnimatedEntity#sprite}.
 	 * @param {external:CanvasRenderingContext2D} context The drawing context.
 	 */
-	draw(context) {
+	draw(context: CanvasRenderingContext2D) {
 		if (typeof this.sprite.draw === "function") {
 			this.sprite.draw(context, this.x + this.spriteOffsetX, this.y + this.spriteOffsetY);
 		} else {

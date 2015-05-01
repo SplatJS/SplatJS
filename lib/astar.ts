@@ -5,7 +5,7 @@ import BinaryHeap = require("./binary_heap");
 interface AStarNode {
 	x: number;
 	y: number;
-	parent: AStarNode;
+	parent?: AStarNode;
 	f: number;
 	g: number;
 	h: number;
@@ -17,8 +17,8 @@ class AStar {
 	destY = 0;
 	scaleX = 1;
 	scaleY = 1;
-	openNodes = {};
-	closedNodes = {};
+	openNodes: { [key: string]: AStarNode } = {};
+	closedNodes: { [key: string]: AStarNode } = {};
 	openHeap = new BinaryHeap<AStarNode>((a, b) => a.f - b.f);
 	
 	/**
@@ -138,7 +138,7 @@ class AStar {
 	}
 	
 	private static generatePath(node: AStarNode) {
-		var path = [];
+		var path: { x: number, y: number }[] = [];
 		while (node.parent) {
 			var ix = node.x;
 			var iy = node.y;
@@ -163,7 +163,7 @@ class AStar {
 		return path;
 	}
 	
-	private static makeKey(x, y) {
+	private static makeKey(x: number, y: number) {
 		return x + "," + y;
 	}
 	
@@ -176,7 +176,7 @@ class AStar {
 	 * @returns {Array} The optimal path, in the form of an array of objects that each have an x and y property.
 	 */
 	search(srcX: number, srcY: number, destX: number, destY: number) {
-		function scale(c, s) {
+		function scale(c: number, s: number) {
 			var downscaled = (c / s) |0;
 			return downscaled * s;
 		}
@@ -193,7 +193,6 @@ class AStar {
 		var srcNode = {
 			x: srcX,
 			y: srcY,
-			parent: null,
 			f: 0,
 			g: 0,
 			h: this.heuristic(srcX, srcY)

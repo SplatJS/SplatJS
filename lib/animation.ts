@@ -3,12 +3,14 @@
 import buffer = require("./buffer");
 
 class Animation {
+	name: string; // Used by Animation Loader
+	
 	/**
 	* The individual frames making up the Animation.
 	* @member {Array}
 	* @private
 	*/
-    frames = [];
+    frames: any[] = [];
 	/**
 	* The currently displayed frame of the Animation.
 	* @member {number}
@@ -104,7 +106,7 @@ class Animation {
 	 * @param {number} x The x coordinate to draw the animation at.
 	 * @param {number} y The y coordinate to draw the animation at.
 	 */
-	draw(context, x, y) {
+	draw(context: CanvasRenderingContext2D, x: number, y: number) {
 		var img = this.frames[this.frame].img;
 		context.drawImage(img, x, y);
 	}

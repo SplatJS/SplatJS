@@ -5,6 +5,10 @@
 
 import platform = require("./platform");
 
+interface SizeInfo {
+	[deviceName: string]: { [layout: string]: { width: number, height: number } }
+}
+
 var ads = {
 	"show": (isAtBottom: boolean) => {},
 	"hide": () => {},
@@ -17,7 +21,7 @@ if (platform.isEjecta()) {
 
 	var isLandscape = window.innerWidth > window.innerHeight;
 
-	var sizes = {
+	var sizes: SizeInfo = {
 		"iPhone": {
 			"portrait": {
 				"width": 320,
