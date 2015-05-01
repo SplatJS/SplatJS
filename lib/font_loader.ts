@@ -81,10 +81,10 @@ class FontLoader {
 		}
 	});
 	 */
-	load(fontFamilies) {
+	load(fontFamilies: FontManifest) {
 		createCssFontFaces(fontFamilies);
 	
-		var families = [];
+		var families: string[] = [];
 		for (var family in fontFamilies) {
 			if (families.hasOwnProperty(family)) {
 				families.push(family);
