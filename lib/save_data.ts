@@ -3,9 +3,16 @@
  * @namespace Splat.saveData
  */
 
-var platform = require("./platform");
+import platform = require("./platform");
 
-function cookieGet(name) {
+interface SaveData {
+	get(keys: string | string[], callback: (a: any, b?: any) => void): void;
+	set(data: any, callback: (a: any, b?: any) => void): void;
+}
+
+var saveData: SaveData;
+
+function cookieGet(name: string) {
 	var value = "; " + document.cookie;
 	var parts = value.split("; " + name + "=");
 	if (parts.length === 2) {
@@ -15,23 +22,22 @@ function cookieGet(name) {
 	}
 }
 
-function cookieSet(name, value) {
+function cookieSet(name: string, value: any) {
 	var expire = new Date();
 	expire.setTime(expire.getTime() + 1000 * 60 * 60 * 24 * 365);
 	var cookie = name + "=" + value + "; expires=" + expire.toUTCString() + ";";
 	document.cookie = cookie;
 }
 
-function getMultiple(getSingleFunc, keys, callback) {
+function getMultiple(getSingleFunc: (key: string) => any, keys: string | string[], callback: (a: any, b?: any) => void) {
 	if (typeof keys === "string") {
-		keys = [keys];
+		keys = [(<string>keys)];
 	}
 
 	try
 	{
-		var data = keys.map(function(key) {
-			return [key, getSingleFunc(key)];
-		}).reduce(function(accum, pair) {
+		var data = (<string[]>keys).map(key => [key, getSingleFunc(key)])
+		.reduce((accum: any, pair: any[]) => {
 			accum[pair[0]] = pair[1];
 			return accum;
 		}, {});
@@ -43,14 +49,14 @@ function getMultiple(getSingleFunc, keys, callback) {
 	}
 }
 
-function setMultiple(setSingleFunc, data, callback) {
+function setMultiple(setSingleFunc: (key: string, value: any) => void, data: { [key: string]: any }, callback: (a: any, b?: any) => void) {
 	try {
 		for (var key in data) {
 			if (data.hasOwnProperty(key)) {
 				setSingleFunc(key, data[key]);
 			}
 		}
-		callback();
+		callback(undefined);
 	}
 	catch (e) {
 		callback(e);
@@ -62,11 +68,11 @@ var cookieSaveData = {
 	"set": setMultiple.bind(undefined, cookieSet)
 };
 
-function localStorageGet(name) {
+function localStorageGet(name: string) {
 	return window.localStorage.getItem(name);
 }
 
-function localStorageSet(name, value) {
+function localStorageSet(name: string, value: any) {
 	window.localStorage.setItem(name, value.toString());
 }
 
@@ -87,10 +93,10 @@ var localStorageSaveData = {
  * @param {string | Array} keys A single key or array of key names of data items to retrieve.
  * @param {saveDataGetFinished} callback A callback that is called with the data when it has been retrieved.
  */
-function chromeStorageGet(keys, callback) {
-	window.chrome.storage.sync.get(keys, function(data) {
-		if (window.chrome.runtime.lastError) {
-			callback(window.chrome.runtime.lastError);
+function chromeStorageGet(keys: string | string[], callback: (a: any, b?: any) => void) {
+	(<any>window).chrome.storage.sync.get(keys, function(data: any) {
+		if ((<any>window).chrome.runtime.lastError) {
+			callback((<any>window).chrome.runtime.lastError);
 		} else {
 			callback(undefined, data);
 		}
@@ -108,9 +114,9 @@ function chromeStorageGet(keys, callback) {
  * @param {object} data An object containing key-value pairs of data to save.
  * @param {saveDataSetFinished} callback A callback that is called when the data has finished saving.
  */
-function chromeStorageSet(data, callback) {
-	window.chrome.storage.sync.set(data, function() {
-		callback(window.chrome.runtime.lastError);
+function chromeStorageSet(data: any, callback: (a: any, b?: any) => void) {
+	(<any>window).chrome.storage.sync.set(data, function() {
+		callback((<any>window).chrome.runtime.lastError);
 	});
 }
 
@@ -120,9 +126,11 @@ var chromeStorageSaveData = {
 };
 
 if (platform.isChromeApp()) {
-	module.exports = chromeStorageSaveData;
+	saveData = chromeStorageSaveData;
 } else if (window.localStorage) {
-	module.exports = localStorageSaveData;
+	saveData = localStorageSaveData;
 } else {
-	module.exports = cookieSaveData;
+	saveData = cookieSaveData;
 }
+
+export = saveData;

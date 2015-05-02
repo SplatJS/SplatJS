@@ -1,18 +1,20 @@
 "use strict";
 
-var platform = require("./platform");
+import platform = require("./platform");
 
 /**
  * Open a url in a new window.
  * @alias Splat.openUrl
  * @param {string} url The url to open in a new window.
  */
-module.exports = function(url) {
+var openUrl = (url: string) => {
 	window.open(url);
 };
 
 if (platform.isEjecta()) {
-	module.exports = function(url) {
-		window.ejecta.openURL(url);
+	openUrl = (url) => {
+		(<any>window).ejecta.openURL(url);
 	};
 }
+
+export = openUrl;

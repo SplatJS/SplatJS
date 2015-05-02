@@ -3,9 +3,9 @@
 import platform = require("./platform");
 
 interface IAP {
-	get(sku: string, callback: (a, b?) => void);
-	buy(product: any, quantity: number, callback: (a, b?) => void);
-	restore(callback: (a, b?) => void);
+	get(sku: string, callback: (a: any, b?: any) => void): void;
+	buy(product: any, quantity: number, callback: (a: any, b?: any) => void): void;
+	restore(callback: (a: any, b?: any) => void): void;
 }
 
 var iap: IAP;
@@ -15,7 +15,7 @@ if (platform.isEjecta()) {
 
 	iap = {
 		"get": function(sku, callback) {
-			ejectaiap.getProducts([sku], function(err, products) {
+			ejectaiap.getProducts([sku], function(err: any, products: any) {
 				if (err) {
 					callback(err);
 					return;
@@ -27,12 +27,12 @@ if (platform.isEjecta()) {
 			product.purchase(quantity, callback);
 		},
 		"restore": function(callback) {
-			ejectaiap.restoreTransactions(function(err, transactions) {
+			ejectaiap.restoreTransactions(function(err: any, transactions: any) {
 				if (err) {
 					callback(err);
 					return;
 				}
-				callback(undefined, transactions.map(function(transaction) {
+				callback(undefined, transactions.map(function(transaction: any) {
 					return transaction.productId;
 				}));
 			});
@@ -48,10 +48,10 @@ if (platform.isEjecta()) {
 					"env": "prod"
 				},
 				"sku": sku,
-				"success": function(response) {
+				"success": function(response: any) {
 					callback(undefined, response.response.details.inAppProducts[0]);
 				},
-				"failure": function(response) {
+				"failure": function(response: any) {
 					callback(response);
 				}
 			});
@@ -62,22 +62,22 @@ if (platform.isEjecta()) {
 					"env": "prod"
 				},
 				"sku": product.sku,
-				"success": function(response) {
+				"success": function(response: any) {
 					callback(undefined, response);
 				},
-				"failure": function(response) {
+				"failure": function(response: any) {
 					callback(response);
 				}
 			});
 		},
 		"restore": function(callback) {
 			(<any>window).google.payments.inapp.getPurchases({
-				"success": function(response) {
-					callback(undefined, response.response.details.map(function(detail) {
+				"success": function(response: any) {
+					callback(undefined, response.response.details.map(function(detail: any) {
 						return detail.sku;
 					}));
 				},
-				"failure": function(response) {
+				"failure": function(response: any) {
 					callback(response);
 				}
 			});

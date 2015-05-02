@@ -3,7 +3,7 @@
 import Camera = require("./camera");
 import Entity = require('./entity');
 	
-function keepPositionInBox(entityPos, entitySize, thisPos, thisSize, offset) {
+function keepPositionInBox(entityPos: number, entitySize: number, thisPos: number, thisSize: number, offset: number) {
 	var boundsFromCenter = thisSize / 2;
 	if (entityPos < thisPos + offset - boundsFromCenter) {
 		thisPos = entityPos - offset + boundsFromCenter;

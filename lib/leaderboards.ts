@@ -12,10 +12,10 @@ interface Leaderboard {
 	 * @param {string} id The name of the achievement.
 	 * @param {int} percent The percentage of the achievement that is completed in the range of 0-100.
 	 */
-	reportAchievement(id: string, percent: number);
-	reportScore(leaderboard: string, score: number);
-	showAchievements();
-	showLeaderboard(name: string);
+	reportAchievement(id: string, percent: number): void;
+	reportScore(leaderboard: string, score: number): void;
+	showAchievements(): void;
+	showLeaderboard(name: string): void;
 }
 
 var leaderboard: Leaderboard;
@@ -24,11 +24,11 @@ if (platform.isEjecta()) {
 	var gameCenter = new (<any>window).Ejecta.GameCenter();
 	gameCenter.softAuthenticate();
 
-	var authFirst = function(action) {
+	var authFirst = function(action: () => void) {
 		if (gameCenter.authed) {
 			action();
 		} else {
-			gameCenter.authenticate(function(err) {
+			gameCenter.authenticate(function(err: any) {
 				if (err) {
 					return;
 				}
