@@ -9,6 +9,8 @@ interface SoundLoader {
 	mute(): void;
 	unmute(): void;
 	setVolume(gain: number): void;
+	loadedSounds: number;
+	totalSounds: number;
 }
 
 (<any>window).AudioContext = (<any>window).AudioContext || (<any>window).webkitAudioContext;

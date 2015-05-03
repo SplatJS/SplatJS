@@ -12,7 +12,7 @@ import AnimationLoader = require("./animation_loader");
 import SceneManager = require("./scene_manager");
 import platform = require("./platform");
 
-function loadAssets(assetLoader: ImageLoader | SoundLoader, assets: { [key: string]: string }) {
+function loadAssets(assetLoader: { load(key: string, manifestItem: any): void }, assets: { [key: string]: any }) {
 	for (var key in assets) {
 		if (assets.hasOwnProperty(key)) {
 			assetLoader.load(key, assets[key]);
