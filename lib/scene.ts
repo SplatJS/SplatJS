@@ -40,6 +40,7 @@ class Scene {
 	 * @member {Splat.Camera}
 	 */
 	camera: Camera;
+	visibilitychange: (visibilityState: string) => void; // TODO: Document; Mentioned in game.ts
 	/**
 	 * The timestamp of the last frame. Used to determine how many milliseconds elapsed between frames.
 	 * @member {number}

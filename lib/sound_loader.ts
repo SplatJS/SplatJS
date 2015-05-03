@@ -30,13 +30,13 @@ class WebAudioSoundLoader implements SoundLoader {
 	 * @member {number}
 	 * @private
 	 */
-	private totalSounds = 0;
+	totalSounds = 0;
 	/**
 	 * The number of sounds that have loaded completely.
 	 * @member {number}
 	 * @private
 	 */
-	private loadedSounds = 0;
+	loadedSounds = 0;
 	/**
 	 * A flag signifying if sounds have been muted through {@link SoundLoader#mute}.
 	 * @member {boolean}

@@ -1,6 +1,22 @@
 "use strict";
 
 /**
+ * @namespace Splat.math
+ */
+
+/**
+ * A seedable pseudo-random number generator. Currently a Mersenne Twister PRNG.
+ * @constructor
+ * @alias Splat.math.Random
+ * @param {number} [seed] The seed for the PRNG.
+ * @see [mersenne-twister package at github]{@link https://github.com/boo1ean/mersenne-twister}
+ * @example
+var rand = new Splat.math.Random(123);
+var val = rand.random();
+ */
+export import Random = require('mersenne-twister');
+
+/**
  * Oscillate between -1 and 1 given a value and a period. This is basically a simplification on using Math.sin().
  * @alias Splat.math.oscillate
  * @param {number} current The current value of the number you want to oscillate.
@@ -13,24 +29,6 @@ Splat.math.oscillate(50, 100); // returns 1
 Splat.math.oscillate(150, 100); // returns -1
 Splat.math.oscillate(200, 100); // returns 0-ish
  */
-function oscillate(current, period) {
+export function oscillate(current: number, period: number) {
 	return Math.sin(current / period * Math.PI);
 }
-
-/**
- * @namespace Splat.math
- */
-module.exports = {
-	oscillate: oscillate,
-	/**
-	 * A seedable pseudo-random number generator. Currently a Mersenne Twister PRNG.
-	 * @constructor
-	 * @alias Splat.math.Random
-	 * @param {number} [seed] The seed for the PRNG.
-	 * @see [mersenne-twister package at github]{@link https://github.com/boo1ean/mersenne-twister}
-	 * @example
-var rand = new Splat.math.Random(123);
-var val = rand.random();
-	 */
-	Random: require("mersenne-twister")
-};
