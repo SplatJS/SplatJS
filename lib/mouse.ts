@@ -97,15 +97,15 @@ class Mouse {
 	 * @constructor
 	 * @param {external:canvas} canvas The canvas to listen for events on.
 	 */
-	constructor(canvas) {
-		canvas.addEventListener("mousedown", (event) => {
+	constructor(canvas: HTMLCanvasElement) {
+		canvas.addEventListener("mousedown", (event: MouseEvent) => {
 			var m = relMouseCoords(canvas, event);
 			this.x = m.x;
 			this.y = m.y;
 			this.buttons[event.button] = 2;
 			this.updateTouchFromMouse();
 		});
-		canvas.addEventListener("mouseup", (event) => {
+		canvas.addEventListener("mouseup", (event: MouseEvent) => {
 			var m = relMouseCoords(canvas, event);
 			this.x = m.x;
 			this.y = m.y;
@@ -115,7 +115,7 @@ class Mouse {
 				this.onmouseup(this.x, this.y);
 			}
 		});
-		canvas.addEventListener("mousemove", (event) => {
+		canvas.addEventListener("mousemove", (event: MouseEvent) => {
 			var m = relMouseCoords(canvas, event);
 			this.x = m.x;
 			this.y = m.y;
@@ -128,7 +128,7 @@ class Mouse {
 				onChangeFunc(touches[i]);
 			}
 		}
-		canvas.addEventListener("touchstart", (event) => {
+		canvas.addEventListener("touchstart", (event: TouchEvent) => {
 			eachChangedTouch(event, (touch) => {
 				var t = relMouseCoords(canvas, touch);
 				t.id = touch.identifier;
@@ -139,7 +139,7 @@ class Mouse {
 				this.touches.push(t);
 			});
 		});
-		canvas.addEventListener("touchmove", (event) => {
+		canvas.addEventListener("touchmove", (event: TouchEvent) => {
 			eachChangedTouch(event, (touch) => {
 				var idx = this.touchIndexById(touch.identifier);
 				var t = this.touches[idx];
@@ -151,7 +151,7 @@ class Mouse {
 				}
 			});
 		});
-		canvas.addEventListener("touchend", (event) => {
+		canvas.addEventListener("touchend", (event: TouchEvent) => {
 			eachChangedTouch(event, (touch) => {
 				var idx = this.touchIndexById(touch.identifier);
 				var t = this.touches.splice(idx, 1)[0];
@@ -192,7 +192,7 @@ class Mouse {
 		}
 	}
 	
-	private updateMouseFromTouch(touch) {
+	private updateMouseFromTouch(touch: TouchInfo) {
 		this.x = touch.x;
 		this.y = touch.y;
 		if (this.buttons[0] === 0) {
@@ -200,7 +200,7 @@ class Mouse {
 		}
 	}
 	
-	private touchIndexById(id) {
+	private touchIndexById(id: number | string) {
 		for (var i = 0; i < this.touches.length; i++) {
 			if (this.touches[i].id === id) {
 				return i;

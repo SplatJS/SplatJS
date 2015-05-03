@@ -3,22 +3,6 @@
 import buffer = require("./buffer");
 import Animation = require("./animation");
 
-interface AnimationManifestItem {
-	strip?: string;
-	frames: number;
-	msPerFrame: number;
-	flip?: string;
-	prefix?: string;
-	suffix?: string;
-	padNumberTo?: number;
-	repeatAt?: number;
-	rotate?: string;
-}
-
-interface AnimationManifest {
-	[name: string]: AnimationManifestItem;
-}
-
 function makeFrame(img: any, frameWidth: number, f: number) {
 	return buffer.makeBuffer(frameWidth, img.height, function(ctx: CanvasRenderingContext2D) {
 		var sx = f * frameWidth;

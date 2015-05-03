@@ -154,7 +154,7 @@ class Game {
 		};
 		var game = new Splat.Game(canvas, manifest);
 	 */
-	constructor(canvas: HTMLCanvasElement, manifest) {
+	constructor(canvas: HTMLCanvasElement, manifest: GameManifest) {
 		window.addEventListener("resize", function() { setCanvasSizeScaled(canvas); });
 		setCanvasSizeScaled(canvas);
 	

@@ -3,17 +3,6 @@
 
 import platform = require("./platform");
 
-interface FontFamilyUrls {
-	"embedded-opentype": string;
-	woff: string;
-	truetype: string;
-	svg: string;
-}
-
-interface FontManifest {
-	[familyName: string]: FontFamilyUrls;
-}
-
 var fontLoader: { new (): FontLoader };
 
 function buildFontFaceRule(family: string, urls: FontFamilyUrls) {
