@@ -28,6 +28,7 @@
   "dependencies": {
     "entity-component-system": "^1.2.1",
     "game-keyboard": "0.1.0",
+    "gl-matrix": "^2.3.1",
     "mersenne-twister": "^1.0.1",
     "time-accumulator": "0.0.0"
   },
