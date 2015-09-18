@@ -1,3 +1,7 @@
+# 3.1.0
+
+Add [gamepad](https://github.com/ericlathrop/html5-gamepad) support.
+
 # 3.0.2
 
 Fix keyboard events bubbling outside of game. Helps when a game is inside of an iframe.

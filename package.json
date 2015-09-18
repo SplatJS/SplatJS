@@ -1,62 +1,63 @@
 {
-	"name": "splatjs",
-	"version": "3.0.2",
-	"description": "A 2D HTML5 Canvas game engine",
-	"main": "lib/main.js",
-	"scripts": {
-		"lint-js": "bash -c \"jshint lib/*.js\"",
-		"build-js": "node build.js",
-		"build-docs": "bash -c \"jsdoc -d docs README.md lib/*.js lib/*.jsdoc\"",
-		"build": "npm run lint-js && npm run build-js && npm run build-docs"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/SplatJS/SplatJS.git"
-	},
-	"keywords": [
-		"html5",
-		"canvas",
-		"game",
-		"browser"
-	],
-	"author": "Eric Lathrop <eric@ericlathrop.com> (http://ericlathrop.com)",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/SplatJS/SplatJS/issues"
-	},
-	"homepage": "https://splatjs.github.io",
-	"dependencies": {
-		"mersenne-twister": "^1.0.1"
-	},
-	"devDependencies": {
-		"browserify": "~3.24.11",
-		"jsdoc": "^3.3.0-alpha5",
-		"jshint": "^2.4.4",
-		"uglifyify": "^2.4.0"
-	},
-	"jshintConfig": {
-		"camelcase": true,
-		"curly": true,
-		"eqeqeq": true,
-		"forin": true,
-		"freeze": true,
-		"immed": true,
-		"indent": 4,
-		"latedef": "nofunc",
-		"newcap": true,
-		"noarg": true,
-		"noempty": true,
-		"nonbsp": true,
-		"nonew": true,
-		"quotmark": "double",
-		"unused": "strict",
-		"trailing": true,
-		"browser": true,
-		"devel": true,
-		"globalstrict": true,
-		"globals": {
-			"module": false,
-			"require": false
-		}
-	}
+  "name": "splatjs",
+  "version": "3.1.0",
+  "description": "A 2D HTML5 Canvas game engine",
+  "main": "lib/main.js",
+  "scripts": {
+    "lint-js": "bash -c \"jshint lib/*.js\"",
+    "build-js": "node build.js",
+    "build-docs": "bash -c \"jsdoc -d docs README.md lib/*.js lib/*.jsdoc\"",
+    "build": "npm run lint-js && npm run build-js && npm run build-docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SplatJS/SplatJS.git"
+  },
+  "keywords": [
+    "html5",
+    "canvas",
+    "game",
+    "browser"
+  ],
+  "author": "Eric Lathrop <eric@ericlathrop.com> (http://ericlathrop.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SplatJS/SplatJS/issues"
+  },
+  "homepage": "https://splatjs.github.io",
+  "dependencies": {
+    "html5-gamepad": "0.0.0",
+    "mersenne-twister": "^1.0.1"
+  },
+  "devDependencies": {
+    "browserify": "~3.24.11",
+    "jsdoc": "^3.3.0-alpha5",
+    "jshint": "^2.4.4",
+    "uglifyify": "^2.4.0"
+  },
+  "jshintConfig": {
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "freeze": true,
+    "immed": true,
+    "indent": 4,
+    "latedef": "nofunc",
+    "newcap": true,
+    "noarg": true,
+    "noempty": true,
+    "nonbsp": true,
+    "nonew": true,
+    "quotmark": "double",
+    "unused": "strict",
+    "trailing": true,
+    "browser": true,
+    "devel": true,
+    "globalstrict": true,
+    "globals": {
+      "module": false,
+      "require": false
+    }
+  }
 }
