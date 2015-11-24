@@ -37,9 +37,24 @@ $ npm install --save splatjs
 ```
 Then require SplatJS into your game:
 ```
-var Splat = require("splat");
+var Splat = require("splatjs");
 ```
-Then use [browserify](http://browserify.org/) to bundle your game as a single JavaScript file for the browser.
+
+Install [browserify](http://browserify.org/)
+```
+$ npm install --save-dev browserify
+```
+
+Then use browserify to bundle your game as a single JavaScript file for the browser.
+```
+$ browserify game.js -o index.js
+```
+
+Include canvas element with id "canvas" and bundled JavaScript file (Splat + Game) on your html page:
+```
+<canvas id="canvas" width="1136" height="640"></canvas>
+<script type="text/javascript" src="index.js"></script>
+```
 
 # Games using SplatJS
 
