@@ -35,9 +35,31 @@ SplatJS works in PhoneGap/Cordova, but it seems like the apps it produces lack h
 ```
 $ npm install --save splatjs
 ```
-Then require SplatJS into your game:
-```
-var Splat = require("splatjs");
+Create a file named game.js and start your game with this code:
+```javascript
+"use strict";
+var Splat = require("splat");
+
+var canvas = document.getElementById("canvas");
+
+var manifest = {
+	"images": {},
+	"sounds": {},
+	"fonts": {},
+	"animations": {}
+};
+
+var game = new Splat.Game(canvas, manifest);
+
+game.scenes.add("title", new Splat.Scene(canvas, function() {
+	// Initiaization
+},function(elapsedMillis) {
+	// Simulation
+}, function(context) {
+	// Draw
+}));
+
+game.scenes.switchTo("loading"); // Start loading scene which will switch to 'title' scene when all the assets in manifest are loaded.
 ```
 
 Install [browserify](http://browserify.org/)
@@ -51,7 +73,7 @@ $ browserify game.js -o index.js
 ```
 
 Include canvas element with id "canvas" and bundled JavaScript file (Splat + Game) on your html page:
-```
+```html
 <canvas id="canvas" width="1136" height="640"></canvas>
 <script type="text/javascript" src="index.js"></script>
 ```
