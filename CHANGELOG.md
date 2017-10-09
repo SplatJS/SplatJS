@@ -1,3 +1,8 @@
+# 3.1.1
+
+Remove Apple iAd support (deprecated).
+Update to latest Browserify.
+
 # 3.1.0
 
 Add [gamepad](https://github.com/ericlathrop/html5-gamepad) support.
