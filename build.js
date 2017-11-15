@@ -1,6 +1,10 @@
 var fs = require("fs");
 var browserify = require("browserify");
 
+
+var options = {};
+options.standalone = "Splat";
+
 var license = fs.readFileSync("LICENSE.TXT");
 var version = process.env["npm_package_version"];
 var header = "/*\n\nSplat " + version + "\n" + license + "\n*/\n";
@@ -15,15 +19,15 @@ if (!fs.existsSync("docs/download")) {
 
 var out = fs.createWriteStream("docs/download/splat-" + version + ".js");
 out.write(header, function(err) {
-	var b = browserify();
+	var b = browserify(options);
 	b.add(main);
-	b.bundle({ standalone: "Splat" }).pipe(out);
+	b.bundle().pipe(out);
 });
 
 var minout = fs.createWriteStream("docs/download/splat-" + version + ".min.js");
 minout.write(header, function(err) {
-	var b = browserify();
+	var b = browserify(options);
 	b.add(main);
 	b.transform({ global: true }, "uglifyify");
-	b.bundle({ standalone: "Splat" }).pipe(minout);
+	b.bundle().pipe(minout);
 });
